@@ -1,15 +1,15 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HugeGraph – Config</title><link>/docs/config/</link><description>Recent content in Config on HugeGraph</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/config/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: HugeGraph 配置</title><link>/docs/config/config-guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-guide/</guid><description>
-&lt;h3 id="1-概述">1 概述&lt;/h3>
-&lt;p>配置文件的目录为 hugegraph-release/conf，所有关于服务和图本身的配置都在此目录下。&lt;/p>
-&lt;p>主要的配置文件包括：gremlin-server.yaml、rest-server.properties 和 hugegraph.properties&lt;/p>
-&lt;p>HugeGraphServer 内部集成了 GremlinServer 和 RestServer，而 gremlin-server.yaml 和 rest-server.properties 就是用来配置这两个Server的。&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HugeGraph – Config</title><link>/docs/config/</link><description>Recent content in Config on HugeGraph</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/config/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: HugeGraph configuration</title><link>/docs/config/config-guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-guide/</guid><description>
+&lt;h3 id="1-overview">1 Overview&lt;/h3>
+&lt;p>The directory for the configuration files is &lt;code>hugegraph-release/conf&lt;/code>, and all the configurations related to the service and the graph itself are located in this directory.&lt;/p>
+&lt;p>The main configuration files include &lt;code>gremlin-server.yaml&lt;/code>, &lt;code>rest-server.properties&lt;/code>, and &lt;code>hugegraph.properties&lt;/code>.&lt;/p>
+&lt;p>The &lt;code>HugeGraphServer&lt;/code> integrates the &lt;code>GremlinServer&lt;/code> and &lt;code>RestServer&lt;/code> internally, and &lt;code>gremlin-server.yaml&lt;/code> and &lt;code>rest-server.properties&lt;/code> are used to configure these two servers.&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="http://tinkerpop.apache.org/docs/3.2.3/reference/#gremlin-server">GremlinServer&lt;/a>：GremlinServer接受用户的gremlin语句，解析后转而调用Core的代码。&lt;/li>
-&lt;li>RestServer：提供RESTful API，根据不同的HTTP请求，调用对应的Core API，如果用户请求体是gremlin语句，则会转发给GremlinServer，实现对图数据的操作。&lt;/li>
+&lt;li>&lt;a href="http://tinkerpop.apache.org/docs/3.2.3/reference/#gremlin-server">GremlinServer&lt;/a>: GremlinServer accepts Gremlin statements from users, parses them, and then invokes the Core code.&lt;/li>
+&lt;li>RestServer: It provides a RESTful API that, based on different HTTP requests, calls the corresponding Core API. If the user&amp;rsquo;s request body is a Gremlin statement, it will be forwarded to GremlinServer to perform operations on the graph data.&lt;/li>
 &lt;/ul>
-&lt;p>下面对这三个配置文件逐一介绍。&lt;/p>
-&lt;h3 id="2-gremlin-serveryaml">2 gremlin-server.yaml&lt;/h3>
-&lt;p>gremlin-server.yaml 文件默认的内容如下：&lt;/p>
+&lt;p>Now let&amp;rsquo;s introduce these three configuration files one by one.&lt;/p>
+&lt;h3 id="2-gremlin-serveryaml">2. gremlin-server.yaml&lt;/h3>
+&lt;p>The default content of the &lt;code>gremlin-server.yaml&lt;/code> file is as follows:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># host and port of gremlin server, need to be consistent with host and port in rest-server.properties&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic">#host: 127.0.0.1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic">#port: 8182&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -97,147 +97,163 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">ssl&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">enabled&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面的配置项很多，但目前只需要关注如下几个配置项：channelizer 和 graphs。&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There are many configuration options mentioned above, but for now, let&amp;rsquo;s focus on the following options: &lt;code>channelizer&lt;/code> and &lt;code>graphs&lt;/code>.&lt;/p>
 &lt;ul>
-&lt;li>graphs：GremlinServer 启动时需要打开的图，该项是一个 map 结构，key 是图的名字，value 是该图的配置文件路径；&lt;/li>
-&lt;li>channelizer：GremlinServer 与客户端有两种通信方式，分别是 WebSocket 和 HTTP（默认）。如果选择 WebSocket，
-用户可以通过 &lt;a href="/clients/gremlin-console.html">Gremlin-Console&lt;/a> 快速体验 HugeGraph 的特性，但是不支持大规模数据导入，
-推荐使用 HTTP 的通信方式，HugeGraph 的外围组件都是基于 HTTP 实现的；&lt;/li>
+&lt;li>&lt;code>graphs&lt;/code>: This option specifies the graphs that need to be opened when the GremlinServer starts. It is a map structure where the key is the name of the graph and the value is the configuration file path for that graph.&lt;/li>
+&lt;li>&lt;code>channelizer&lt;/code>: The GremlinServer supports two communication modes with clients: WebSocket and HTTP (default). If WebSocket is chosen, users can quickly experience the features of HugeGraph using &lt;a href="/clients/gremlin-console.html">Gremlin-Console&lt;/a>, but it does not support importing large-scale data. It is recommended to use HTTP for communication, as all peripheral components of HugeGraph are implemented based on HTTP.&lt;/li>
 &lt;/ul>
-&lt;p>默认GremlinServer是服务在 localhost:8182，如果需要修改，配置 host、port 即可&lt;/p>
+&lt;p>By default, the GremlinServer serves at &lt;code>localhost:8182&lt;/code>. If you need to modify it, configure the &lt;code>host&lt;/code> and &lt;code>port&lt;/code> settings.&lt;/p>
 &lt;ul>
-&lt;li>host：部署 GremlinServer 机器的机器名或 IP，目前 HugeGraphServer 不支持分布式部署，且GremlinServer不直接暴露给用户;&lt;/li>
-&lt;li>port：部署 GremlinServer 机器的端口；&lt;/li>
+&lt;li>&lt;code>host&lt;/code>: The hostname or IP address of the machine where the GremlinServer is deployed. Currently, HugeGraphServer does not support distributed deployment, and GremlinServer is not directly exposed to users.&lt;/li>
+&lt;li>&lt;code>port&lt;/code>: The port number of the machine where the GremlinServer is deployed.&lt;/li>
 &lt;/ul>
-&lt;p>同时需要在 rest-server.properties 中增加对应的配置项 gremlinserver.url=http://host:port&lt;/p>
-&lt;h3 id="3-rest-serverproperties">3 rest-server.properties&lt;/h3>
-&lt;p>rest-server.properties 文件的默认内容如下：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties"># bind url
-restserver.url=http://127.0.0.1:8080
-# gremlin server url, need to be consistent with host and port in gremlin-server.yaml
-#gremlinserver.url=http://127.0.0.1:8182
-# graphs list with pair NAME:CONF_PATH
-graphs=[hugegraph:conf/hugegraph.properties]
-# authentication
-#auth.authenticator=
-#auth.admin_token=
-#auth.user_tokens=[]
-server.id=server-1
-server.role=master
-&lt;/code>&lt;/pre>&lt;ul>
-&lt;li>restserver.url：RestServer 提供服务的 url，根据实际环境修改；&lt;/li>
-&lt;li>graphs：RestServer 启动时也需要打开图，该项为 map 结构，key 是图的名字，value 是该图的配置文件路径；&lt;/li>
+&lt;p>Additionally, you need to add the corresponding configuration &lt;code>gremlinserver.url=http://host:port&lt;/code> in &lt;code>rest-server.properties&lt;/code>.&lt;/p>
+&lt;h3 id="3-rest-serverproperties">3. rest-server.properties&lt;/h3>
+&lt;p>The default content of the &lt;code>rest-server.properties&lt;/code> file is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span># bind url
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>restserver.url=http://127.0.0.1:8080
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># gremlin server url, need to be consistent with host and port in gremlin-server.yaml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#gremlinserver.url=http://127.0.0.1:8182
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># graphs list with pair NAME:CONF_PATH
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>graphs=[hugegraph:conf/hugegraph.properties]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># authentication
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.authenticator=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.admin_token=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.user_tokens=[]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>server.id=server-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>server.role=master
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>restserver.url&lt;/code>: The URL at which the RestServer provides its services. Modify it according to the actual environment.&lt;/li>
+&lt;li>&lt;code>graphs&lt;/code>: The RestServer also needs to open graphs when it starts. This option is a map structure where the key is the name of the graph and the value is the configuration file path for that graph.&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>注意：gremlin-server.yaml 和 rest-server.properties 都包含 graphs 配置项，而 &lt;code>init-store&lt;/code> 命令是根据 gremlin-server.yaml 的 graphs 下的图进行初始化的。&lt;/p>
+&lt;p>Note: Both &lt;code>gremlin-server.yaml&lt;/code> and &lt;code>rest-server.properties&lt;/code> contain the &lt;code>graphs&lt;/code> configuration option, and the &lt;code>init-store&lt;/code> command initializes based on the graphs specified in the &lt;code>graphs&lt;/code> section of &lt;code>gremlin-server.yaml&lt;/code>.&lt;/p>
 &lt;/blockquote>
 &lt;blockquote>
-&lt;p>配置项 gremlinserver.url 是 GremlinServer 为 RestServer 提供服务的 url，该配置项默认为 http://localhost:8182，如需修改，需要和 gremlin-server.yaml 中的 host 和 port 相匹配；&lt;/p>
+&lt;p>The &lt;code>gremlinserver.url&lt;/code> configuration option is the URL at which the GremlinServer provides services to the RestServer. By default, it is set to &lt;code>http://localhost:8182&lt;/code>. If you need to modify it, it should match the &lt;code>host&lt;/code> and &lt;code>port&lt;/code> settings in &lt;code>gremlin-server.yaml&lt;/code>.&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="4-hugegraphproperties">4 hugegraph.properties&lt;/h3>
-&lt;p>hugegraph.properties 是一类文件，因为如果系统存在多个图，则会有多个相似的文件。该文件用来配置与图存储和查询相关的参数，文件的默认内容如下：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties"># gremlin entrence to create graph
-gremlin.graph=com.baidu.hugegraph.HugeFactory
-# cache config
-#schema.cache_capacity=100000
-# vertex-cache default is 1000w, 10min expired
-#vertex.cache_capacity=10000000
-#vertex.cache_expire=600
-# edge-cache default is 100w, 10min expired
-#edge.cache_capacity=1000000
-#edge.cache_expire=600
-# schema illegal name template
-#schema.illegal_name_regex=\s+|~.*
-#vertex.default_label=vertex
-backend=rocksdb
-serializer=binary
-store=hugegraph
-raft.mode=false
-raft.safe_read=false
-raft.use_snapshot=false
-raft.endpoint=127.0.0.1:8281
-raft.group_peers=127.0.0.1:8281,127.0.0.1:8282,127.0.0.1:8283
-raft.path=./raft-log
-raft.use_replicator_pipeline=true
-raft.election_timeout=10000
-raft.snapshot_interval=3600
-raft.backend_threads=48
-raft.read_index_threads=8
-raft.queue_size=16384
-raft.queue_publish_timeout=60
-raft.apply_batch=1
-raft.rpc_threads=80
-raft.rpc_connect_timeout=5000
-raft.rpc_timeout=60000
-# if use &amp;#39;ikanalyzer&amp;#39;, need download jar from &amp;#39;https://github.com/apache/hugegraph-doc/raw/ik_binary/dist/server/ikanalyzer-2012_u6.jar&amp;#39; to lib directory
-search.text_analyzer=jieba
-search.text_analyzer_mode=INDEX
-# rocksdb backend config
-#rocksdb.data_path=/path/to/disk
-#rocksdb.wal_path=/path/to/disk
-# cassandra backend config
-cassandra.host=localhost
-cassandra.port=9042
-cassandra.username=
-cassandra.password=
-#cassandra.connect_timeout=5
-#cassandra.read_timeout=20
-#cassandra.keyspace.strategy=SimpleStrategy
-#cassandra.keyspace.replication=3
-# hbase backend config
-#hbase.hosts=localhost
-#hbase.port=2181
-#hbase.znode_parent=/hbase
-#hbase.threads_max=64
-# mysql backend config
-#jdbc.driver=com.mysql.jdbc.Driver
-#jdbc.url=jdbc:mysql://127.0.0.1:3306
-#jdbc.username=root
-#jdbc.password=
-#jdbc.reconnect_max_times=3
-#jdbc.reconnect_interval=3
-#jdbc.sslmode=false
-# postgresql &amp;amp; cockroachdb backend config
-#jdbc.driver=org.postgresql.Driver
-#jdbc.url=jdbc:postgresql://localhost:5432/
-#jdbc.username=postgres
-#jdbc.password=
-# palo backend config
-#palo.host=127.0.0.1
-#palo.poll_interval=10
-#palo.temp_dir=./palo-data
-#palo.file_limit_size=32
-&lt;/code>&lt;/pre>&lt;p>重点关注未注释的几项：&lt;/p>
+&lt;h3 id="4-hugegraphproperties">4. hugegraph.properties&lt;/h3>
+&lt;p>&lt;code>hugegraph.properties&lt;/code> is a type of file. If the system has multiple graphs, there will be multiple similar files. This file is used to configure parameters related to graph storage and querying. The default content of the file is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span># gremlin entrence to create graph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gremlin.graph=com.baidu.hugegraph.HugeFactory
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># cache config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#schema.cache_capacity=100000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># vertex-cache default is 1000w, 10min expired
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#vertex.cache_capacity=10000000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#vertex.cache_expire=600
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># edge-cache default is 100w, 10min expired
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#edge.cache_capacity=1000000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#edge.cache_expire=600
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># schema illegal name template
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#schema.illegal_name_regex=\s+|~.*
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#vertex.default_label=vertex
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>backend=rocksdb
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>serializer=binary
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>store=hugegraph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.mode=false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.safe_read=false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.use_snapshot=false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.endpoint=127.0.0.1:8281
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.group_peers=127.0.0.1:8281,127.0.0.1:8282,127.0.0.1:8283
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.path=./raft-log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.use_replicator_pipeline=true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.election_timeout=10000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.snapshot_interval=3600
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.backend_threads=48
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.read_index_threads=8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.queue_size=16384
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.queue_publish_timeout=60
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.apply_batch=1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.rpc_threads=80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.rpc_connect_timeout=5000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raft.rpc_timeout=60000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># if use &amp;#39;ikanalyzer&amp;#39;, need download jar from &amp;#39;https://github.com/apache/hugegraph-doc/raw/ik_binary/dist/server/ikanalyzer-2012_u6.jar&amp;#39; to lib directory
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>search.text_analyzer=jieba
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>search.text_analyzer_mode=INDEX
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># rocksdb backend config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rocksdb.data_path=/path/to/disk
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rocksdb.wal_path=/path/to/disk
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># cassandra backend config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cassandra.host=localhost
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cassandra.port=9042
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cassandra.username=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cassandra.password=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#cassandra.connect_timeout=5
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#cassandra.read_timeout=20
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#cassandra.keyspace.strategy=SimpleStrategy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#cassandra.keyspace.replication=3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># hbase backend config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#hbase.hosts=localhost
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#hbase.port=2181
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#hbase.znode_parent=/hbase
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#hbase.threads_max=64
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># mysql backend config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.driver=com.mysql.jdbc.Driver
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.url=jdbc:mysql://127.0.0.1:3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.username=root
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.password=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.reconnect_max_times=3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.reconnect_interval=3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.sslmode=false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># postgresql &amp;amp; cockroachdb backend config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.driver=org.postgresql.Driver
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.url=jdbc:postgresql://localhost:5432/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.username=postgres
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#jdbc.password=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># palo backend config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#palo.host=127.0.0.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#palo.poll_interval=10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#palo.temp_dir=./palo-data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#palo.file_limit_size=32
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Pay attention to the following uncommented items:&lt;/p>
 &lt;ul>
-&lt;li>gremlin.graph：GremlinServer 的启动入口，用户不要修改此项；&lt;/li>
-&lt;li>backend：使用的后端存储，可选值有 memory、cassandra、scylladb 和 rocksdb；&lt;/li>
-&lt;li>serializer：主要为内部使用，用于将 schema、vertex 和 edge 序列化到后端，对应的可选值为 text、cassandra、scylladb 和 binary；(注：rocksdb后端值需是binary，其他后端backend与serializer值需保持一致，如hbase后端该值为hbase)&lt;/li>
-&lt;li>store：图存储到后端使用的数据库名，在 cassandra 和 scylladb 中就是 keyspace 名，此项的值与 GremlinServer 和 RestServer 中的图名并无关系，但是出于直观考虑，建议仍然使用相同的名字；&lt;/li>
-&lt;li>cassandra.host：backend 为 cassandra 或 scylladb 时此项才有意义，cassandra/scylladb 集群的 seeds；&lt;/li>
-&lt;li>cassandra.port：backend 为 cassandra 或 scylladb 时此项才有意义，cassandra/scylladb 集群的 native port；&lt;/li>
-&lt;li>rocksdb.data_path：backend 为 rocksdb 时此项才有意义，rocksdb 的数据目录&lt;/li>
-&lt;li>rocksdb.wal_path：backend 为 rocksdb 时此项才有意义，rocksdb 的日志目录&lt;/li>
-&lt;li>admin.token: 通过一个token来获取服务器的配置信息，例如：&lt;a href="http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55">http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55&lt;/a>&lt;/li>
+&lt;li>&lt;code>gremlin.graph&lt;/code>: The entry point for GremlinServer startup. Users should not modify this item.&lt;/li>
+&lt;li>&lt;code>backend&lt;/code>: The backend storage used, with options including &lt;code>memory&lt;/code>, &lt;code>cassandra&lt;/code>, &lt;code>scylladb&lt;/code>, &lt;code>mysql&lt;/code>, &lt;code>hbase&lt;/code>, &lt;code>postgresql&lt;/code>, and &lt;code>rocksdb&lt;/code>.&lt;/li>
+&lt;li>&lt;code>serializer&lt;/code>: Mainly for internal use, used to serialize schema, vertices, and edges to the backend. The corresponding options are &lt;code>text&lt;/code>, &lt;code>cassandra&lt;/code>, &lt;code>scylladb&lt;/code>, and &lt;code>binary&lt;/code> (Note: The &lt;code>rocksdb&lt;/code> backend should have a value of &lt;code>binary&lt;/code>, while for other backends, the values of &lt;code>backend&lt;/code> and &lt;code>serializer&lt;/code> should remain consistent. For example, for the &lt;code>hbase&lt;/code> backend, the value should be &lt;code>hbase&lt;/code>).&lt;/li>
+&lt;li>&lt;code>store&lt;/code>: The name of the database used for storing the graph in the backend. In Cassandra and ScyllaDB, it corresponds to the keyspace name. The value of this item is unrelated to the graph name in GremlinServer and RestServer, but for clarity, it is recommended to use the same name.&lt;/li>
+&lt;li>&lt;code>cassandra.host&lt;/code>: This item is only meaningful when the backend is set to &lt;code>cassandra&lt;/code> or &lt;code>scylladb&lt;/code>. It specifies the seeds of the Cassandra/ScyllaDB cluster.&lt;/li>
+&lt;li>&lt;code>cassandra.port&lt;/code>: This item is only meaningful when the backend is set to &lt;code>cassandra&lt;/code> or &lt;code>scylladb&lt;/code>. It specifies the native port of the Cassandra/ScyllaDB cluster.&lt;/li>
+&lt;li>&lt;code>rocksdb.data_path&lt;/code>: This item is only meaningful when the backend is set to &lt;code>rocksdb&lt;/code>. It specifies the data directory for RocksDB.&lt;/li>
+&lt;li>&lt;code>rocksdb.wal_path&lt;/code>: This item is only meaningful when the backend is set to &lt;code>rocksdb&lt;/code>. It specifies the log directory for RocksDB.&lt;/li>
+&lt;li>&lt;code>admin.token&lt;/code>: A token used to retrieve server configuration information. For example: &lt;a href="http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55">http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h3 id="5-多图配置">5 多图配置&lt;/h3>
-&lt;p>我们的系统是可以存在多个图的，并且各个图的后端可以不一样，比如图 hugegraph 和 hugegraph1，其中 hugegraph 以 cassandra 作为后端，hugegraph1 以 rocksdb作为后端。&lt;/p>
-&lt;p>配置方法也很简单：&lt;/p>
-&lt;p>&lt;strong>修改 gremlin-server.yaml&lt;/strong>&lt;/p>
-&lt;p>在 gremlin-server.yaml 的 graphs 域中添加一个键值对，键为图的名字，值为图的配置文件路径，比如：&lt;/p>
+&lt;h3 id="5-multi-graph-configuration">5. Multi-Graph Configuration&lt;/h3>
+&lt;p>Our system can have multiple graphs, and each graph can have a different backend. For example, there are two graphs named &lt;code>hugegraph&lt;/code> and &lt;code>hugegraph1&lt;/code>, where &lt;code>hugegraph&lt;/code> uses Cassandra as the backend and &lt;code>hugegraph1&lt;/code> uses RocksDB as the backend.&lt;/p>
+&lt;p>The configuration method is simple:&lt;/p>
+&lt;p>&lt;strong>Modify &lt;code>gremlin-server.yaml&lt;/code>&lt;/strong>&lt;/p>
+&lt;p>Add a key-value pair in the &lt;code>graphs&lt;/code> section of &lt;code>gremlin-server.yaml&lt;/code>, where the key is the name of the graph and the value is the path to the graph&amp;rsquo;s configuration file. For example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">graphs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">hugegraph&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">conf/hugegraph.properties,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">hugegraph1&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">conf/hugegraph1.properties&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>修改 rest-server.properties&lt;/strong>&lt;/p>
-&lt;p>在 rest-server.properties 的 graphs 域中添加一个键值对，键为图的名字，值为图的配置文件路径，比如：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">graphs=[hugegraph:conf/hugegraph.properties, hugegraph1:conf/hugegraph1.properties]
-&lt;/code>&lt;/pre>&lt;p>&lt;strong>添加 hugegraph1.properties&lt;/strong>&lt;/p>
-&lt;p>拷贝 hugegraph.properties，命名为 hugegraph1.properties，修改图对应的数据库名以及关于后端部分的参数，比如：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">store=hugegraph1
-...
-backend=rocksdb
-serializer=binary
-&lt;/code>&lt;/pre>&lt;p>&lt;strong>停止 Server，初始化执行 init-store.sh（为新的图创建数据库），重新启动 Server&lt;/strong>&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Modify &lt;code>rest-server.properties&lt;/code>&lt;/strong>&lt;/p>
+&lt;p>Add a key-value pair in the &lt;code>graphs&lt;/code> section of &lt;code>rest-server.properties&lt;/code>, where the key is the name of the graph and the value is the path to the graph&amp;rsquo;s configuration file. For example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>graphs=[hugegraph:conf/hugegraph.properties, hugegraph1:conf/hugegraph1.properties]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Add &lt;code>hugegraph1.properties&lt;/code>&lt;/strong>&lt;/p>
+&lt;p>Copy &lt;code>hugegraph.properties&lt;/code> and name it &lt;code>hugegraph1.properties&lt;/code>. Modify the database name corresponding to the graph and the parameters related to the backend. For example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>store=hugegraph1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>backend=rocksdb
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>serializer=binary
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Stop the server, execute &lt;code>init-store.sh&lt;/code> (to create a new database for the new graph), and restart the server.&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ bin/stop-hugegraph.sh
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ bin/init-store.sh
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ bin/start-hugegraph.sh
@@ -1423,131 +1439,131 @@ serializer=binary
 &lt;li>&lt;code>jdbc.driver=org.postgresql.Driver&lt;/code>&lt;/li>
 &lt;li>&lt;code>jdbc.url=jdbc:postgresql://localhost:5432/&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;/blockquote></description></item><item><title>Docs: HugeGraph 内置用户权限与扩展权限配置及使用</title><link>/docs/config/config-authentication/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-authentication/</guid><description>
-&lt;h3 id="概述">概述&lt;/h3>
-&lt;p>HugeGraph 为了方便不同用户场景下的鉴权使用，目前内置了两套权限模式：&lt;/p>
+&lt;/blockquote></description></item><item><title>Docs: Built-in User Authentication and Authorization Configuration and Usage in HugeGraph</title><link>/docs/config/config-authentication/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-authentication/</guid><description>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;p>To facilitate authentication usage in different user scenarios, HugeGraph currently provides two built-in authorization modes:&lt;/p>
 &lt;ol>
-&lt;li>简单的&lt;code>ConfigAuthenticator&lt;/code>模式，通过本地配置文件存储用户名和密码 (仅支持单 GraphServer)&lt;/li>
-&lt;li>完备的&lt;code>StandardAuthenticator&lt;/code>模式，支持多用户认证、以及细粒度的权限访问控制，采用基于 “用户-用户组-操作-资源” 的 4 层设计，灵活控制用户角色与权限 (支持多 GraphServer)&lt;/li>
+&lt;li>Simple &lt;code>ConfigAuthenticator&lt;/code> mode, which stores usernames and passwords in a local configuration file (supports only a single GraphServer).&lt;/li>
+&lt;li>Comprehensive &lt;code>StandardAuthenticator&lt;/code> mode, which supports multi-user authentication and fine-grained access control. It adopts a 4-layer design based on &amp;ldquo;User-UserGroup-Operation-Resource&amp;rdquo; to flexibly control user roles and permissions (supports multiple GraphServers).&lt;/li>
 &lt;/ol>
-&lt;p>其中 &lt;code>StandardAuthenticator&lt;/code> 模式的几个核心设计：&lt;/p>
+&lt;p>Some key designs of the &lt;code>StandardAuthenticator&lt;/code> mode include:&lt;/p>
 &lt;ul>
-&lt;li>初始化时创建超级管理员 (&lt;code>admin&lt;/code>) 用户，后续通过超级管理员创建其它用户，新创建的用户被分配足够权限后，可以创建或管理更多的用户&lt;/li>
-&lt;li>支持动态创建用户、用户组、资源，支持动态分配或取消权限&lt;/li>
-&lt;li>用户可以属于一个或多个用户组，每个用户组可以拥有对任意个资源的操作权限，操作类型包括：读、写、删除、执行等种类&lt;/li>
-&lt;li>&amp;ldquo;资源&amp;rdquo; 描述了图数据库中的数据，比如符合某一类条件的顶点，每一个资源包括 &lt;code>type&lt;/code>、&lt;code>label&lt;/code>、&lt;code>properties&lt;/code>三个要素，共有 18 种类型、任意 label、任意 properties 可组合形成的资源，一个资源的内部条件是且关系，多个资源之间的条件是或关系&lt;/li>
+&lt;li>During initialization, a super administrator (&lt;code>admin&lt;/code>) user is created. Subsequently, other users can be created by the super administrator. Once newly created users are assigned sufficient permissions, they can create or manage more users.&lt;/li>
+&lt;li>It supports dynamic creation of users, user groups, and resources, as well as dynamic allocation or revocation of permissions.&lt;/li>
+&lt;li>Users can belong to one or multiple user groups. Each user group can have permissions to operate on any number of resources. The types of operations include read, write, delete, execute, and others.&lt;/li>
+&lt;li>&amp;ldquo;Resource&amp;rdquo; describes the data in the graph database, such as vertices that meet certain criteria. Each resource consists of three elements: &lt;code>type&lt;/code>, &lt;code>label&lt;/code>, and &lt;code>properties&lt;/code>. There are 18 types in total, with the ability to combine any label and properties. The internal condition of a resource is an AND relationship, while the condition between multiple resources is an OR relationship.&lt;/li>
 &lt;/ul>
-&lt;p>举例说明：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// 场景：某用户只有北京地区的数据读取权限
+&lt;p>Here is an example to illustrate:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// Scenario: A user only has data read permission for the Beijing area
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">user&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">xx&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">belong&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span> &lt;span style="color:#000">group&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">xx&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">access&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">read&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)-&amp;gt;&lt;/span> &lt;span style="color:#000">target&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">graph&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">graph1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">resource&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">={&lt;/span>&lt;span style="color:#000">label&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">person&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">city&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Beijing&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">})&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置用户认证">配置用户认证&lt;/h3>
-&lt;p>HugeGraph 默认&lt;strong>不启用&lt;/strong>用户认证功能，需通过修改配置文件来启用该功能。内置实现了&lt;code>StandardAuthenticator&lt;/code>和&lt;code>ConfigAuthenticator&lt;/code>两种模式，&lt;code>StandardAuthenticator&lt;/code>模式支持多用户认证与细粒度权限控制，&lt;code>ConfigAuthenticator&lt;/code>模式支持简单的用户权限认证。此外，开发者可以自定义实现&lt;code>HugeAuthenticator&lt;/code>接口来对接自身的权限系统。&lt;/p>
-&lt;p>用户认证方式均采用 &lt;a href="https://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81">HTTP Basic Authentication&lt;/a> ，简单说就是在发送 HTTP 请求时在 &lt;code>Authentication&lt;/code> 设置选择 &lt;code>Basic&lt;/code> 然后输入对应的用户名和密码，对应 HTTP 明文如下所示 :&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="configure-user-authentication">Configure User Authentication&lt;/h3>
+&lt;p>By default, HugeGraph does &lt;strong>not enable&lt;/strong> user authentication. You need to modify the configuration file to enable this feature. HugeGraph provides two built-in authentication modes: &lt;code>StandardAuthenticator&lt;/code> and &lt;code>ConfigAuthenticator&lt;/code>. The &lt;code>StandardAuthenticator&lt;/code> mode supports multi-user authentication and fine-grained permission control, while the &lt;code>ConfigAuthenticator&lt;/code> mode supports simple user permission authentication. Additionally, developers can implement their own &lt;code>HugeAuthenticator&lt;/code> interface to integrate with their existing authentication systems.&lt;/p>
+&lt;p>Both authentication modes adopt &lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Authentication&lt;/a>. In simple terms, when sending an HTTP request, you need to set the &lt;code>Authentication&lt;/code> header to &lt;code>Basic&lt;/code> and provide the corresponding username and password. The corresponding HTTP plaintext format is as follows:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET http://localhost:8080/graphs/hugegraph/schema/vertexlabels
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Basic admin xxxx
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="standardauthenticator模式">StandardAuthenticator模式&lt;/h4>
-&lt;p>&lt;code>StandardAuthenticator&lt;/code>模式是通过在数据库后端存储用户信息来支持用户认证和权限控制，该实现基于数据库存储的用户的名称与密码进行认证（密码已被加密），基于用户的角色来细粒度控制用户权限。下面是具体的配置流程（重启服务生效）：&lt;/p>
-&lt;p>在配置文件&lt;code>gremlin-server.yaml&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>rest-server&lt;/code>文件路径：&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="standardauthenticator-mode">StandardAuthenticator Mode&lt;/h4>
+&lt;p>The &lt;code>StandardAuthenticator&lt;/code> mode supports user authentication and permission control by storing user information in the database backend. This implementation authenticates users based on their names and passwords (encrypted) stored in the database and controls user permissions based on their roles. Below is the specific configuration process (requires service restart):&lt;/p>
+&lt;p>Configure the &lt;code>authenticator&lt;/code> and its &lt;code>rest-server&lt;/code> file path in the &lt;code>gremlin-server.yaml&lt;/code> configuration file:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">authentication&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.StandardAuthenticator,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticationHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.WsAndHttpBasicAuthHandler,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#204a87;font-weight:bold">tokens&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">conf/rest-server.properties}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在配置文件&lt;code>rest-server.properties&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>graph_store&lt;/code>信息：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">auth.authenticator=com.baidu.hugegraph.auth.StandardAuthenticator
-auth.graph_store=hugegraph
-# auth client config
-# 如果是分开部署 GraphServer 和 AuthServer, 还需要指定下面的配置, 地址填写 AuthServer 的 IP:RPC 端口
-#auth.remote_url=127.0.0.1:8899,127.0.0.1:8898,127.0.0.1:8897
-&lt;/code>&lt;/pre>&lt;p>其中，&lt;code>graph_store&lt;/code>配置项是指使用哪一个图来存储用户信息，如果存在多个图的话，选取任意一个均可。&lt;/p>
-&lt;p>在配置文件&lt;code>hugegraph{n}.properties&lt;/code>中配置&lt;code>gremlin.graph&lt;/code>信息：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">gremlin.graph=com.baidu.hugegraph.auth.HugeFactoryAuthProxy
-&lt;/code>&lt;/pre>&lt;p>然后详细的权限 API 调用和说明请参考 &lt;a href="/docs/clients/restful-api/auth">Authentication-API&lt;/a> 文档&lt;/p>
-&lt;h4 id="configauthenticator模式">ConfigAuthenticator模式&lt;/h4>
-&lt;p>&lt;code>ConfigAuthenticator&lt;/code>模式是通过预先在配置文件中设置用户信息来支持用户认证，该实现是基于配置好的静态&lt;code>tokens&lt;/code>来验证用户是否合法。下面是具体的配置流程（重启服务生效）：&lt;/p>
-&lt;p>在配置文件&lt;code>gremlin-server.yaml&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>rest-server&lt;/code>文件路径：&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Configure the &lt;code>authenticator&lt;/code> and &lt;code>graph_store&lt;/code> information in the &lt;code>rest-server.properties&lt;/code> configuration file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>auth.authenticator=com.baidu.hugegraph.auth.StandardAuthenticator
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth.graph_store=hugegraph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># Auth Client Config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># If GraphServer and AuthServer are deployed separately, you also need to specify the following configuration. Fill in the IP:RPC port of AuthServer.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># auth.remote_url=127.0.0.1:8899,127.0.0.1:8898,127.0.0.1:8897
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the above configuration, the &lt;code>graph_store&lt;/code> option specifies which graph to use for storing user information. If there are multiple graphs, you can choose any of them.&lt;/p>
+&lt;p>In the &lt;code>hugegraph{n}.properties&lt;/code> configuration file, configure the &lt;code>gremlin.graph&lt;/code> information:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>gremlin.graph=com.baidu.hugegraph.auth.HugeFactoryAuthProxy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For detailed API calls and explanations regarding permissions, please refer to the &lt;a href="/docs/clients/restful-api/auth">Authentication-API&lt;/a> documentation.&lt;/p>
+&lt;h4 id="configauthenticator-mode">ConfigAuthenticator Mode&lt;/h4>
+&lt;p>The &lt;code>ConfigAuthenticator&lt;/code> mode supports user authentication by predefining user information in the configuration file. This implementation verifies the legitimacy of users based on preconfigured static &lt;code>tokens&lt;/code>. Below is the specific configuration process (requires service restart):&lt;/p>
+&lt;p>Configure the &lt;code>authenticator&lt;/code> and its &lt;code>rest-server&lt;/code> file path in the &lt;code>gremlin-server.yaml&lt;/code> configuration file:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">authentication&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.ConfigAuthenticator,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticationHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.WsAndHttpBasicAuthHandler,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#204a87;font-weight:bold">tokens&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">conf/rest-server.properties}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在配置文件&lt;code>rest-server.properties&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>tokens&lt;/code>信息：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">auth.authenticator=com.baidu.hugegraph.auth.ConfigAuthenticator
-auth.admin_token=token-value-a
-auth.user_tokens=[hugegraph1:token-value-1, hugegraph2:token-value-2]
-&lt;/code>&lt;/pre>&lt;p>在配置文件&lt;code>hugegraph{n}.properties&lt;/code>中配置&lt;code>gremlin.graph&lt;/code>信息：&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">gremlin.graph=com.baidu.hugegraph.auth.HugeFactoryAuthProxy
-&lt;/code>&lt;/pre>&lt;h3 id="自定义用户认证系统">自定义用户认证系统&lt;/h3>
-&lt;p>如果需要支持更加灵活的用户系统，可自定义authenticator进行扩展，自定义authenticator实现接口&lt;code>com.baidu.hugegraph.auth.HugeAuthenticator&lt;/code>即可，然后修改配置文件中&lt;code>authenticator&lt;/code>配置项指向该实现。&lt;/p></description></item><item><title>Docs: 配置 HugeGraphServer 使用 https 协议</title><link>/docs/config/config-https/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-https/</guid><description>
-&lt;h3 id="概述">概述&lt;/h3>
-&lt;p>HugeGraphServer 默认使用的是 http 协议，如果用户对请求的安全性有要求，可以配置成 https。&lt;/p>
-&lt;h3 id="服务端配置">服务端配置&lt;/h3>
-&lt;p>修改 conf/rest-server.properties 配置文件，将 restserver.url 的 schema 部分改为 https。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 将协议设置为 https&lt;/span>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Configure the &lt;code>authenticator&lt;/code> and its &lt;code>tokens&lt;/code> information in the &lt;code>rest-server.properties&lt;/code> configuration file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>auth.authenticator=com.baidu.hugegraph.auth.ConfigAuthenticator
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth.admin_token=token-value-a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth.user_tokens=[hugegraph1:token-value-1, hugegraph2:token-value-2]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the &lt;code>hugegraph{n}.properties&lt;/code> configuration file, configure the &lt;code>gremlin.graph&lt;/code> information:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>gremlin.graph=com.baidu.hugegraph.auth.HugeFactoryAuthProxy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="custom-user-authentication-system">Custom User Authentication System&lt;/h3>
+&lt;p>If you need to support a more flexible user system, you can customize the authenticator for extension. Simply implement the &lt;code>com.baidu.hugegraph.auth.HugeAuthenticator&lt;/code> interface with your custom authenticator, and then modify the &lt;code>authenticator&lt;/code> configuration item in the configuration file to point to your implementation.&lt;/p></description></item><item><title>Docs: Configuring HugeGraphServer to Use HTTPS Protocol</title><link>/docs/config/config-https/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-https/</guid><description>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;p>By default, HugeGraphServer uses the HTTP protocol. However, if you have security requirements for your requests, you can configure it to use HTTPS.&lt;/p>
+&lt;h3 id="server-configuration">Server Configuration&lt;/h3>
+&lt;p>Modify the &lt;code>conf/rest-server.properties&lt;/code> configuration file and change the schema part of &lt;code>restserver.url&lt;/code> to &lt;code>https&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Set the protocol to HTTPS&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">restserver.url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://127.0.0.1:8080&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 服务端 keystore 文件路径，当协议为 https 时该默认值自动生效，可按需修改此项&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Server keystore file path. This default value is automatically effective when using HTTPS, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ssl.keystore_file&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">conf/hugegraph-server.keystore&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 服务端 keystore 文件密码，当协议为 https 时该默认值自动生效，可按需修改此项&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Server keystore file password. This default value is automatically effective when using HTTPS, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ssl.keystore_password&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">******&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>服务端的 conf 目录下已经给出了一个 keystore 文件&lt;code>hugegraph-server.keystore&lt;/code>，该文件的密码为&lt;code>hugegraph&lt;/code>，
-这两项都是在开启了 https 协议时的默认值，用户可以生成自己的 keystore 文件及密码，然后修改&lt;code>ssl.keystore_file&lt;/code>和&lt;code>ssl.keystore_password&lt;/code>的值。&lt;/p>
-&lt;h3 id="客户端配置">客户端配置&lt;/h3>
-&lt;h4 id="在-hugegraph-client-中使用-https">在 HugeGraph-Client 中使用 https&lt;/h4>
-&lt;p>在构造 HugeClient 时传入 https 相关的配置，代码示例：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The server&amp;rsquo;s &lt;code>conf&lt;/code> directory already includes a keystore file named &lt;code>hugegraph-server.keystore&lt;/code>, and the password for this file is &lt;code>hugegraph&lt;/code>. These are the default values when enabling the HTTPS protocol. Users can generate their own keystore file and password, and then modify the values of &lt;code>ssl.keystore_file&lt;/code> and &lt;code>ssl.keystore_password&lt;/code>.&lt;/p>
+&lt;h3 id="client-configuration">Client Configuration&lt;/h3>
+&lt;h4 id="using-https-in-hugegraph-client">Using HTTPS in HugeGraph-Client&lt;/h4>
+&lt;p>When constructing a HugeClient, pass the HTTPS-related configurations. Here&amp;rsquo;s an example in Java:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">url&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://localhost:8080&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">graphName&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;hugegraph&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">HugeClientBuilder&lt;/span> &lt;span style="color:#000">builder&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">HugeClient&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">graphName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// 客户端 keystore 文件路径
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// Client keystore file path
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">trustStoreFilePath&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;hugegraph.truststore&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// 客户端 keystore 密码
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// Client keystore password
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">trustStorePassword&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;******&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">configSSL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">trustStoreFilePath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">trustStorePassword&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">HugeClient&lt;/span> &lt;span style="color:#000">hugeClient&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">build&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
-&lt;p>注意：HugeGraph-Client 在 1.9.0 版本以前是直接以 new 的方式创建，并且不支持 https 协议，在 1.9.0 版本以后改成以 builder 的方式创建，并支持配置 https 协议。&lt;/p>
+&lt;p>Note: Before version 1.9.0, HugeGraph-Client was created directly using the &lt;code>new&lt;/code> keyword and did not support the HTTPS protocol. Starting from version 1.9.0, it changed to use the builder pattern and supports configuring the HTTPS protocol.&lt;/p>
 &lt;/blockquote>
-&lt;h4 id="在-hugegraph-loader-中使用-https">在 HugeGraph-Loader 中使用 https&lt;/h4>
-&lt;p>启动导入任务时，在命令行中添加如下选项：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># https&lt;/span>
+&lt;h4 id="using-https-in-hugegraph-loader">Using HTTPS in HugeGraph-Loader&lt;/h4>
+&lt;p>When starting an import task, add the following options in the command line:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># HTTPS&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--protocol https
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 客户端证书文件路径，当指定 --protocol 为 https 时，默认值 conf/hugegraph.truststore 自动生效，可按需修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Client certificate file path. When specifying --protocol as https, the default value conf/hugegraph.truststore is automatically used, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--trust-store-file &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>file&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 客户端证书文件密码，当指定 --protocol 为 https 时，默认值 hugegraph 自动生效，可按需修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Client certificate file password. When specifying --protocol as https, the default value hugegraph is automatically used, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--trust-store-password &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>password&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hugegraph-loader 的 conf 目录下已经放了一个默认的客户端证书文件 hugegraph.truststore，其密码是 hugegraph。&lt;/p>
-&lt;h4 id="在-hugegraph-tools-中使用-https">在 HugeGraph-Tools 中使用 https&lt;/h4>
-&lt;p>执行命令时，在命令行中添加如下选项：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 客户端证书文件路径，当 url 中使用 https 协议时，默认值 conf/hugegraph.truststore 自动生效，可按需修改&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Under the &lt;code>conf&lt;/code> directory of hugegraph-loader, there is already a default client certificate file named &lt;code>hugegraph.truststore&lt;/code>, and its password is &lt;code>hugegraph&lt;/code>.&lt;/p>
+&lt;h4 id="using-https-in-hugegraph-tools">Using HTTPS in HugeGraph-Tools&lt;/h4>
+&lt;p>When executing commands, add the following options in the command line:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Client certificate file path. When using the HTTPS protocol in the URL, the default value conf/hugegraph.truststore is automatically used, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--trust-store-file &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>file&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 客户端证书文件密码，当 url 中使用 https 协议时，默认值 hugegraph 自动生效，可按需修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Client certificate file password. When using the HTTPS protocol in the URL, the default value hugegraph is automatically used, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--trust-store-password &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>password&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 执行迁移命令时，当 --target-url 中使用 https 协议时，默认值 conf/hugegraph.truststore 自动生效，可按需修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># When executing migration commands and using the --target-url with the HTTPS protocol, the default value conf/hugegraph.truststore is automatically used, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--target-trust-store-file &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>target-file&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 执行迁移命令时，当 --target-url 中使用 https 协议时，默认值 hugegraph 自动生效，可按需修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># When executing migration commands and using the --target-url with the HTTPS protocol, the default value hugegraph is automatically used, and you can modify it as needed.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--target-trust-store-password &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>target-password&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hugegraph-tools 的 conf 目录下已经放了一个默认的客户端证书文件 hugegraph.truststore，其密码是 hugegraph。&lt;/p>
-&lt;h3 id="如何生成证书文件">如何生成证书文件&lt;/h3>
-&lt;p>本部分给出生成证书的示例，如果默认的证书已经够用，或者已经知晓如何生成，可跳过。&lt;/p>
-&lt;h4 id="服务端">服务端&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Under the &lt;code>conf&lt;/code> directory of hugegraph-tools, there is already a default client certificate file named &lt;code>hugegraph.truststore&lt;/code>, and its password is &lt;code>hugegraph&lt;/code>.&lt;/p>
+&lt;h3 id="how-to-generate-certificate-files">How to Generate Certificate Files&lt;/h3>
+&lt;p>This section provides an example of generating certificates. If the default certificate is sufficient or if you already know how to generate certificates, you can skip this section.&lt;/p>
+&lt;h4 id="server">Server&lt;/h4>
 &lt;ol>
-&lt;li>⽣成服务端私钥，并且导⼊到服务端 keystore ⽂件中，server.keystore 是给服务端⽤的，其中保存着⾃⼰的私钥&lt;/li>
+&lt;li>Generate the server&amp;rsquo;s private key and import it into the server&amp;rsquo;s keystore file. The &lt;code>server.keystore&lt;/code> is for the server&amp;rsquo;s use and contains its private key.&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>keytool -genkey -alias serverkey -keyalg RSA -keystore server.keystore
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>过程中根据需求填写描述信息，默认证书的描述信息如下：&lt;/p>
-&lt;pre tabindex="0">&lt;code>名字和姓⽒：hugegraph
-组织单位名称：hugegraph
-组织名称：hugegraph
-城市或区域名称：BJ
-州或省份名称：BJ
-国家代码：CN
-&lt;/code>&lt;/pre>&lt;ol start="2">
-&lt;li>根据服务端私钥，导出服务端证书&lt;/li>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>During the process, fill in the description information according to your requirements. The description information for the default certificate is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>First and Last Name: hugegraph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Organizational Unit Name: hugegraph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Organization Name: hugegraph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>City or Locality Name: BJ
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>State or Province Name: BJ
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Country Code: CN
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>Export the server certificate based on the server&amp;rsquo;s private key.&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>keytool -export -alias serverkey -keystore server.keystore -file server.crt
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>server.crt 就是服务端的证书&lt;/p>
-&lt;h4 id="客户端">客户端&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>server.crt&lt;/code> is the server&amp;rsquo;s certificate.&lt;/p>
+&lt;h4 id="client">Client&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>keytool -import -alias serverkey -file server.crt -keystore client.truststore
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>client.truststore 是给客户端⽤的，其中保存着受信任的证书&lt;/p></description></item><item><title>Docs: HugeGraph-Computer Config</title><link>/docs/config/config-computer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-computer/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>client.truststore&lt;/code> is for the client&amp;rsquo;s use and contains the trusted certificate.&lt;/p></description></item><item><title>Docs: HugeGraph-Computer Config</title><link>/docs/config/config-computer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/config/config-computer/</guid><description>
 &lt;h3 id="computer-config-options">Computer Config Options&lt;/h3>
 &lt;table>
 &lt;thead>
