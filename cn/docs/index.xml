@@ -32,10 +32,10 @@
 &lt;h3 id="1-概述">1 概述&lt;/h3>
 &lt;p>配置文件的目录为 hugegraph-release/conf，所有关于服务和图本身的配置都在此目录下。&lt;/p>
 &lt;p>主要的配置文件包括：gremlin-server.yaml、rest-server.properties 和 hugegraph.properties&lt;/p>
-&lt;p>HugeGraphServer 内部集成了 GremlinServer 和 RestServer，而 gremlin-server.yaml 和 rest-server.properties 就是用来配置这两个Server的。&lt;/p>
+&lt;p>HugeGraphServer 内部集成了 GremlinServer 和 RestServer，而 gremlin-server.yaml 和 rest-server.properties 就是用来配置这两个 Server 的。&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="http://tinkerpop.apache.org/docs/3.2.3/reference/#gremlin-server">GremlinServer&lt;/a>：GremlinServer接受用户的gremlin语句，解析后转而调用Core的代码。&lt;/li>
-&lt;li>RestServer：提供RESTful API，根据不同的HTTP请求，调用对应的Core API，如果用户请求体是gremlin语句，则会转发给GremlinServer，实现对图数据的操作。&lt;/li>
+&lt;li>&lt;a href="http://tinkerpop.apache.org/docs/3.2.3/reference/#gremlin-server">GremlinServer&lt;/a>：GremlinServer 接受用户的 gremlin 语句，解析后转而调用 Core 的代码。&lt;/li>
+&lt;li>RestServer：提供 RESTful API，根据不同的 HTTP 请求，调用对应的 Core API，如果用户请求体是 gremlin 语句，则会转发给 GremlinServer，实现对图数据的操作。&lt;/li>
 &lt;/ul>
 &lt;p>下面对这三个配置文件逐一介绍。&lt;/p>
 &lt;h3 id="2-gremlin-serveryaml">2 gremlin-server.yaml&lt;/h3>
@@ -44,7 +44,7 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic">#host: 127.0.0.1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic">#port: 8182&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Gremlin查询中的超时时间（以毫秒为单位）&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Gremlin 查询中的超时时间（以毫秒为单位）&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">evaluationTimeout&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30000&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">channelizer&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.apache.tinkerpop.gremlin.server.channel.WsAndHttpChannelizer&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -157,9 +157,9 @@
 用户可以通过 &lt;a href="/clients/gremlin-console.html">Gremlin-Console&lt;/a> 快速体验 HugeGraph 的特性，但是不支持大规模数据导入，
 推荐使用 HTTP 的通信方式，HugeGraph 的外围组件都是基于 HTTP 实现的；&lt;/li>
 &lt;/ul>
-&lt;p>默认GremlinServer是服务在 localhost:8182，如果需要修改，配置 host、port 即可&lt;/p>
+&lt;p>默认 GremlinServer 是服务在 localhost:8182，如果需要修改，配置 host、port 即可&lt;/p>
 &lt;ul>
-&lt;li>host：部署 GremlinServer 机器的机器名或 IP，目前 HugeGraphServer 不支持分布式部署，且GremlinServer不直接暴露给用户;&lt;/li>
+&lt;li>host：部署 GremlinServer 机器的机器名或 IP，目前 HugeGraphServer 不支持分布式部署，且 GremlinServer 不直接暴露给用户;&lt;/li>
 &lt;li>port：部署 GremlinServer 机器的端口；&lt;/li>
 &lt;/ul>
 &lt;p>同时需要在 rest-server.properties 中增加对应的配置项 gremlinserver.url=http://host:port&lt;/p>
@@ -193,7 +193,7 @@
 &lt;h3 id="4-hugegraphproperties">4 hugegraph.properties&lt;/h3>
 &lt;p>hugegraph.properties 是一类文件，因为如果系统存在多个图，则会有多个相似的文件。该文件用来配置与图存储和查询相关的参数，文件的默认内容如下：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span># gremlin entrence to create graph
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gremlin.graph=com.baidu.hugegraph.HugeFactory
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gremlin.graph=org.apache.hugegraph.HugeFactory
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># cache config
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#schema.cache_capacity=100000
@@ -280,13 +280,13 @@
 &lt;ul>
 &lt;li>gremlin.graph：GremlinServer 的启动入口，用户不要修改此项；&lt;/li>
 &lt;li>backend：使用的后端存储，可选值有 memory、cassandra、scylladb、mysql、hbase、postgresql 和 rocksdb；&lt;/li>
-&lt;li>serializer：主要为内部使用，用于将 schema、vertex 和 edge 序列化到后端，对应的可选值为 text、cassandra、scylladb 和 binary；(注：rocksdb后端值需是binary，其他后端backend与serializer值需保持一致，如hbase后端该值为hbase)&lt;/li>
+&lt;li>serializer：主要为内部使用，用于将 schema、vertex 和 edge 序列化到后端，对应的可选值为 text、cassandra、scylladb 和 binary；(注：rocksdb 后端值需是 binary，其他后端 backend 与 serializer 值需保持一致，如 hbase 后端该值为 hbase)&lt;/li>
 &lt;li>store：图存储到后端使用的数据库名，在 cassandra 和 scylladb 中就是 keyspace 名，此项的值与 GremlinServer 和 RestServer 中的图名并无关系，但是出于直观考虑，建议仍然使用相同的名字；&lt;/li>
 &lt;li>cassandra.host：backend 为 cassandra 或 scylladb 时此项才有意义，cassandra/scylladb 集群的 seeds；&lt;/li>
 &lt;li>cassandra.port：backend 为 cassandra 或 scylladb 时此项才有意义，cassandra/scylladb 集群的 native port；&lt;/li>
 &lt;li>rocksdb.data_path：backend 为 rocksdb 时此项才有意义，rocksdb 的数据目录&lt;/li>
 &lt;li>rocksdb.wal_path：backend 为 rocksdb 时此项才有意义，rocksdb 的日志目录&lt;/li>
-&lt;li>admin.token: 通过一个token来获取服务器的配置信息，例如：&lt;a href="http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55">http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55&lt;/a>&lt;/li>
+&lt;li>admin.token: 通过一个 token 来获取服务器的配置信息，例如：&lt;a href="http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55">http://localhost:8080/graphs/hugegraph/conf?token=162f7848-0b6d-4faf-b557-3a0797869c55&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h3 id="5-多图配置">5 多图配置&lt;/h3>
 &lt;p>我们的系统是可以存在多个图的，并且各个图的后端可以不一样，比如图 &lt;code>hugegraph_rocksdb&lt;/code> 和 &lt;code>hugegraph_mysql&lt;/code>，其中 &lt;code>hugegraph_rocksdb&lt;/code> 以 &lt;code>RocksDB&lt;/code> 作为后端，&lt;code>hugegraph_mysql&lt;/code> 以 &lt;code>MySQL&lt;/code> 作为后端。&lt;/p>
@@ -1624,6 +1624,13 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="8-使用-intellij-idea-调试-server">8 使用 IntelliJ IDEA 调试 Server&lt;/h3>
 &lt;p>请参考&lt;a href="/docs/contribution-guidelines/hugegraph-server-idea-setup">在 IDEA 中配置 Server 开发环境&lt;/a>&lt;/p>
 &lt;h3 id="9-在启动-server-时创建示例图">9 在启动 Server 时创建示例图&lt;/h3>
+&lt;p>有三种方式可以在启动 Server 时创建示例图&lt;/p>
+&lt;ul>
+&lt;li>方式一: 直接修改配置文件&lt;/li>
+&lt;li>方式二: 启动脚本使用命令行参数&lt;/li>
+&lt;li>方式三: 使用docker或docker-compose添加环境变量&lt;/li>
+&lt;/ul>
+&lt;h4 id="91-直接修改配置文件">9.1 直接修改配置文件&lt;/h4>
 &lt;p>修改 &lt;code>conf/gremlin-server.yaml&lt;/code>，将 &lt;code>empty-sample.groovy&lt;/code> 修改为 &lt;code>example.groovy&lt;/code>：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">org.apache.tinkerpop.gremlin.jsr223.ScriptFileGremlinPlugin&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">files&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#000">scripts/example.groovy]&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -1658,7 +1665,44 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>代表创建示例图成功。&lt;/p>
 &lt;blockquote>
 &lt;p>使用 IntelliJ IDEA 在启动 Server 时创建示例图的流程类似，不再赘述。&lt;/p>
-&lt;/blockquote></description></item><item><title>Docs: Introduction with HugeGraph</title><link>/cn/docs/introduction/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/introduction/readme/</guid><description>
+&lt;/blockquote>
+&lt;h4 id="92-启动脚本时指定参数">9.2 启动脚本时指定参数&lt;/h4>
+&lt;p>在脚本启动时候携带 &lt;code>-p true&lt;/code> 参数, 表示preload, 即创建示例图&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>bin/start-hugegraph.sh -p true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Starting HugeGraphServer in daemon mode...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Connecting to HugeGraphServer (http://127.0.0.1:8080/graphs)......OK
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>并且使用 RESTful API 请求 &lt;code>HugeGraphServer&lt;/code> 得到如下结果：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000">curl&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:8080/graphs/hugegraph/graph/vertices&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">|&lt;/span> &lt;span style="color:#000">gunzip&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertices&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lang&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">328&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Beijing&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">29&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Beijing&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">35&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Shanghai&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">27&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Hongkong&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lang&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">199&lt;/span>&lt;span style="color:#000;font-weight:bold">}}]}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>代表创建示例图成功。&lt;/p>
+&lt;h4 id="93-使用docker启动">9.3 使用docker启动&lt;/h4>
+&lt;p>在docker启动的时候设置环境变量 &lt;code>PRELOAD=true&lt;/code>, 从而实现启动脚本的时候加载数据。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>使用&lt;code>docker run&lt;/code>&lt;/p>
+&lt;p>使用 &lt;code>docker run -itd --name=graph -p 18080:8080 -e PRELOAD=true hugegraph/hugegraph:latest&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用&lt;code>docker-compose&lt;/code>&lt;/p>
+&lt;p>创建&lt;code>docker-compose.yml&lt;/code>，具体文件如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;3&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">graph&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">hugegraph/hugegraph:latest&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">graph&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">PRELOAD=true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#0000cf;font-weight:bold">18080&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">8080&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用命令 &lt;code>docker-compose up -d&lt;/code> 启动容器&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>使用 RESTful API 请求 &lt;code>HugeGraphServer&lt;/code> 得到如下结果：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000">curl&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:18080/graphs/hugegraph/graph/vertices&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">|&lt;/span> &lt;span style="color:#000">gunzip&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertices&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lang&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">328&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Beijing&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">29&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Beijing&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">35&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Shanghai&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">27&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Hongkong&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">}},{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lang&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">199&lt;/span>&lt;span style="color:#000;font-weight:bold">}}]}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>代表创建示例图成功。&lt;/p></description></item><item><title>Docs: Introduction with HugeGraph</title><link>/cn/docs/introduction/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/introduction/readme/</guid><description>
 &lt;h3 id="summary">Summary&lt;/h3>
 &lt;p>HugeGraph是一款易用、高效、通用的开源图数据库系统（Graph Database，&lt;a href="https://github.com/apache/hugegraph">GitHub项目地址&lt;/a>），
 实现了&lt;a href="https://tinkerpop.apache.org">Apache TinkerPop3&lt;/a>框架及完全兼容&lt;a href="https://tinkerpop.apache.org/gremlin.html">Gremlin&lt;/a>查询语言，
@@ -2306,6 +2350,7 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;p>The following is a contribution guide for HugeGraph:&lt;/p>
 &lt;img width="884" alt="image" src="https://user-images.githubusercontent.com/9625821/159643158-8bf72c0a-93c3-4a58-8912-7b2ab20ced1d.png">
 &lt;h2 id="1-preparation">1. Preparation&lt;/h2>
+&lt;p>&lt;strong>建议&lt;/strong>: 使用 &lt;a href="https://desktop.github.com/">GitHub desktop&lt;/a> 可以大幅简化和改善你提交 PR/Commit 的过程, 特别适合新人&lt;/p>
 &lt;p>We can contribute by reporting issues, submitting code patches or any other feedback.&lt;/p>
 &lt;p>Before submitting the code, we need to do some preparation:&lt;/p>
 &lt;ol>
@@ -2332,7 +2377,6 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config user.email &lt;span style="color:#4e9a06">&amp;#34;{email-address-of-github}&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># like &amp;#34;jermy@apache.org&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ol>
-&lt;p>Optional: You can use &lt;a href="https://desktop.github.com/">GitHub desktop&lt;/a> to greatly simplify the commit and update process.&lt;/p>
 &lt;h2 id="2-create-an-issue-on-github">2. Create an Issue on GitHub&lt;/h2>
 &lt;p>If you encounter bugs or have any questions, please go to &lt;a href="https://github.com/apache/incubator-hugegraph/issues">GitHub Issues&lt;/a> to report them and feel free to &lt;a href="https://github.com/apache/hugegraph/issues/new">create an issue&lt;/a>.&lt;/p>
 &lt;h2 id="3-make-changes-of-code-locally">3. Make changes of code locally&lt;/h2>
@@ -2389,8 +2433,6 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;img width="1280" alt="image" src="https://user-images.githubusercontent.com/9625821/163524204-7fe0e6bf-9c8b-4b1a-ac65-6a0ac423eb16.png">&lt;/p>
 &lt;h2 id="4-create-a-pull-request">4. Create a Pull Request&lt;/h2>
 &lt;p>Go to the web page of GitHub fork repo, there would be a chance to create a Pull Request after pushing to a new branch, just click button &amp;ldquo;Compare &amp;amp; pull request&amp;rdquo; to do it. Then edit the description for proposed changes, which can just be copied from the commit message.&lt;/p>
-&lt;p>Please sign the HugeGraph CLA when contributing code for the first time. You can sign the CLA by just posting a Pull Request Comment same as the below format:&lt;/p>
-&lt;p>&lt;code>I have read the CLA Document and I hereby sign the CLA&lt;/code>&lt;/p>
 &lt;p>Note: please make sure the email address you used to submit the code is bound to the GitHub account. For how to bind the email address, please refer to &lt;a href="https://github.com/settings/emails">https://github.com/settings/emails&lt;/a>:
 &lt;img width="1280" alt="image" src="https://user-images.githubusercontent.com/9625821/163522445-2a50a72a-dea2-434f-9868-3a0d40d0d037.png">&lt;/p>
 &lt;h2 id="5-code-review">5. Code review&lt;/h2>
@@ -2461,7 +2503,7 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;/tr>
 &lt;tr>
 &lt;td>authentication&lt;/td>
-&lt;td>authenticator: com.baidu.hugegraph.auth.StandardAuthenticator, config: {tokens: conf/rest-server.properties}&lt;/td>
+&lt;td>authenticator: org.apache.hugegraph.auth.StandardAuthenticator, config: {tokens: conf/rest-server.properties}&lt;/td>
 &lt;td>The authenticator and config(contains tokens path) of authentication mechanism.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
@@ -2570,22 +2612,22 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;tr>
 &lt;td>auth.authenticator&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>The class path of authenticator implementation. e.g., com.baidu.hugegraph.auth.StandardAuthenticator, or com.baidu.hugegraph.auth.ConfigAuthenticator.&lt;/td>
+&lt;td>The class path of authenticator implementation. e.g., org.apache.hugegraph.auth.StandardAuthenticator, or org.apache.hugegraph.auth.ConfigAuthenticator.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>auth.admin_token&lt;/td>
 &lt;td>162f7848-0b6d-4faf-b557-3a0797869c55&lt;/td>
-&lt;td>Token for administrator operations, only for com.baidu.hugegraph.auth.ConfigAuthenticator.&lt;/td>
+&lt;td>Token for administrator operations, only for org.apache.hugegraph.auth.ConfigAuthenticator.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>auth.graph_store&lt;/td>
 &lt;td>hugegraph&lt;/td>
-&lt;td>The name of graph used to store authentication information, like users, only for com.baidu.hugegraph.auth.StandardAuthenticator.&lt;/td>
+&lt;td>The name of graph used to store authentication information, like users, only for org.apache.hugegraph.auth.StandardAuthenticator.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>auth.user_tokens&lt;/td>
 &lt;td>[hugegraph:9fd95c9c-711b-415b-b85f-d4df46ba5c31]&lt;/td>
-&lt;td>The map of user tokens with name and password, only for com.baidu.hugegraph.auth.ConfigAuthenticator.&lt;/td>
+&lt;td>The map of user tokens with name and password, only for org.apache.hugegraph.auth.ConfigAuthenticator.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>auth.audit_log_rate&lt;/td>
@@ -2637,7 +2679,7 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;tbody>
 &lt;tr>
 &lt;td>gremlin.graph&lt;/td>
-&lt;td>com.baidu.hugegraph.HugeFactory&lt;/td>
+&lt;td>org.apache.hugegraph.HugeFactory&lt;/td>
 &lt;td>Gremlin entrance to create graph.&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -3599,7 +3641,7 @@ HugeGraph支持多用户并行操作，用户可输入Gremlin查询语句，并�
 &lt;/table>
 &lt;p>其它与 MySQL 后端一致。&lt;/p>
 &lt;blockquote>
-&lt;p>PostgreSQL 后端的 driver 和 url 应该设置为:&lt;/p>
+&lt;p>PostgreSQL 后端的 driver 和 url 应该设置为：&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>jdbc.driver=org.postgresql.Driver&lt;/code>&lt;/li>
 &lt;li>&lt;code>jdbc.url=jdbc:postgresql://localhost:5432/&lt;/code>&lt;/li>
@@ -6585,7 +6627,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;p>HugeGraph 为了方便不同用户场景下的鉴权使用，目前内置了两套权限模式：&lt;/p>
 &lt;ol>
 &lt;li>简单的&lt;code>ConfigAuthenticator&lt;/code>模式，通过本地配置文件存储用户名和密码 (仅支持单 GraphServer)&lt;/li>
-&lt;li>完备的&lt;code>StandardAuthenticator&lt;/code>模式，支持多用户认证、以及细粒度的权限访问控制，采用基于 “用户-用户组-操作-资源” 的 4 层设计，灵活控制用户角色与权限 (支持多 GraphServer)&lt;/li>
+&lt;li>完备的&lt;code>StandardAuthenticator&lt;/code>模式，支持多用户认证、以及细粒度的权限访问控制，采用基于“用户 - 用户组 - 操作 - 资源”的 4 层设计，灵活控制用户角色与权限 (支持多 GraphServer)&lt;/li>
 &lt;/ol>
 &lt;p>其中 &lt;code>StandardAuthenticator&lt;/code> 模式的几个核心设计：&lt;/p>
 &lt;ul>
@@ -6602,41 +6644,41 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;p>用户认证方式均采用 &lt;a href="https://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81">HTTP Basic Authentication&lt;/a> ，简单说就是在发送 HTTP 请求时在 &lt;code>Authentication&lt;/code> 设置选择 &lt;code>Basic&lt;/code> 然后输入对应的用户名和密码，对应 HTTP 明文如下所示 :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET http://localhost:8080/graphs/hugegraph/schema/vertexlabels
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Basic admin xxxx
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="standardauthenticator模式">StandardAuthenticator模式&lt;/h4>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="standardauthenticator-模式">StandardAuthenticator 模式&lt;/h4>
 &lt;p>&lt;code>StandardAuthenticator&lt;/code>模式是通过在数据库后端存储用户信息来支持用户认证和权限控制，该实现基于数据库存储的用户的名称与密码进行认证（密码已被加密），基于用户的角色来细粒度控制用户权限。下面是具体的配置流程（重启服务生效）：&lt;/p>
 &lt;p>在配置文件&lt;code>gremlin-server.yaml&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>rest-server&lt;/code>文件路径：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">authentication&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.StandardAuthenticator,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticationHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.WsAndHttpBasicAuthHandler,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.apache.hugegraph.auth.StandardAuthenticator,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticationHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.apache.hugegraph.auth.WsAndHttpBasicAuthHandler,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#204a87;font-weight:bold">tokens&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">conf/rest-server.properties}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在配置文件&lt;code>rest-server.properties&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>graph_store&lt;/code>信息：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>auth.authenticator=com.baidu.hugegraph.auth.StandardAuthenticator
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>auth.authenticator=org.apache.hugegraph.auth.StandardAuthenticator
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth.graph_store=hugegraph
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># auth client config
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># 如果是分开部署 GraphServer 和 AuthServer, 还需要指定下面的配置, 地址填写 AuthServer 的 IP:RPC 端口
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># 如果是分开部署 GraphServer 和 AuthServer, 还需要指定下面的配置，地址填写 AuthServer 的 IP:RPC 端口
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.remote_url=127.0.0.1:8899,127.0.0.1:8898,127.0.0.1:8897
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中，&lt;code>graph_store&lt;/code>配置项是指使用哪一个图来存储用户信息，如果存在多个图的话，选取任意一个均可。&lt;/p>
 &lt;p>在配置文件&lt;code>hugegraph{n}.properties&lt;/code>中配置&lt;code>gremlin.graph&lt;/code>信息：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>gremlin.graph=com.baidu.hugegraph.auth.HugeFactoryAuthProxy
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>gremlin.graph=org.apache.hugegraph.auth.HugeFactoryAuthProxy
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后详细的权限 API 调用和说明请参考 &lt;a href="/docs/clients/restful-api/auth">Authentication-API&lt;/a> 文档&lt;/p>
-&lt;h4 id="configauthenticator模式">ConfigAuthenticator模式&lt;/h4>
+&lt;h4 id="configauthenticator-模式">ConfigAuthenticator 模式&lt;/h4>
 &lt;p>&lt;code>ConfigAuthenticator&lt;/code>模式是通过预先在配置文件中设置用户信息来支持用户认证，该实现是基于配置好的静态&lt;code>tokens&lt;/code>来验证用户是否合法。下面是具体的配置流程（重启服务生效）：&lt;/p>
 &lt;p>在配置文件&lt;code>gremlin-server.yaml&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>rest-server&lt;/code>文件路径：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">authentication&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.ConfigAuthenticator,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticationHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">com.baidu.hugegraph.auth.WsAndHttpBasicAuthHandler,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.apache.hugegraph.auth.ConfigAuthenticator,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">authenticationHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.apache.hugegraph.auth.WsAndHttpBasicAuthHandler,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#204a87;font-weight:bold">tokens&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">conf/rest-server.properties}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在配置文件&lt;code>rest-server.properties&lt;/code>中配置&lt;code>authenticator&lt;/code>及其&lt;code>tokens&lt;/code>信息：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>auth.authenticator=com.baidu.hugegraph.auth.ConfigAuthenticator
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>auth.authenticator=org.apache.hugegraph.auth.ConfigAuthenticator
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth.admin_token=token-value-a
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth.user_tokens=[hugegraph1:token-value-1, hugegraph2:token-value-2]
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在配置文件&lt;code>hugegraph{n}.properties&lt;/code>中配置&lt;code>gremlin.graph&lt;/code>信息：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>gremlin.graph=com.baidu.hugegraph.auth.HugeFactoryAuthProxy
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>gremlin.graph=org.apache.hugegraph.auth.HugeFactoryAuthProxy
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="自定义用户认证系统">自定义用户认证系统&lt;/h3>
-&lt;p>如果需要支持更加灵活的用户系统，可自定义authenticator进行扩展，自定义authenticator实现接口&lt;code>com.baidu.hugegraph.auth.HugeAuthenticator&lt;/code>即可，然后修改配置文件中&lt;code>authenticator&lt;/code>配置项指向该实现。&lt;/p></description></item><item><title>Docs: Gremlin-Console</title><link>/cn/docs/clients/gremlin-console/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/clients/gremlin-console/</guid><description>
+&lt;p>如果需要支持更加灵活的用户系统，可自定义 authenticator 进行扩展，自定义 authenticator 实现接口&lt;code>org.apache.hugegraph.auth.HugeAuthenticator&lt;/code>即可，然后修改配置文件中&lt;code>authenticator&lt;/code>配置项指向该实现。&lt;/p></description></item><item><title>Docs: Gremlin-Console</title><link>/cn/docs/clients/gremlin-console/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/clients/gremlin-console/</guid><description>
 &lt;p>Gremlin-Console 是由 Tinkerpop 自己开发的一个交互式客户端，用户可以使用该客户端对 Graph 做各种操作，主要有两种使用模式：&lt;/p>
 &lt;ul>
 &lt;li>单机离线调用模式&lt;/li>
@@ -6795,12 +6837,12 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">gremlin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&amp;gt;&lt;/span> &lt;span style="color:#5c35cc;font-weight:bold">@script&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">==&amp;gt;&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">6&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">gremlin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>更多关于 gremlin-console 的使用，请参考 &lt;a href="http://tinkerpop.apache.org/docs/current/reference/">Tinkerpop 官网&lt;/a>&lt;/p></description></item><item><title>Docs: HugeGraph Plugin机制及插件扩展流程</title><link>/cn/docs/guides/custom-plugin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/guides/custom-plugin/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>更多关于 gremlin-console 的使用，请参考 &lt;a href="http://tinkerpop.apache.org/docs/current/reference/">Tinkerpop 官网&lt;/a>&lt;/p></description></item><item><title>Docs: HugeGraph Plugin 机制及插件扩展流程</title><link>/cn/docs/guides/custom-plugin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/guides/custom-plugin/</guid><description>
 &lt;h3 id="背景">背景&lt;/h3>
 &lt;ol>
-&lt;li>HugeGraph不仅开源开放，而且要做到简单易用，一般用户无需更改源码也能轻松增加插件扩展功能。&lt;/li>
-&lt;li>HugeGraph支持多种内置存储后端，也允许用户无需更改现有源码的情况下扩展自定义后端。&lt;/li>
-&lt;li>HugeGraph支持全文检索，全文检索功能涉及到各语言分词，目前已内置8种中文分词器，也允许用户无需更改现有源码的情况下扩展自定义分词器。&lt;/li>
+&lt;li>HugeGraph 不仅开源开放，而且要做到简单易用，一般用户无需更改源码也能轻松增加插件扩展功能。&lt;/li>
+&lt;li>HugeGraph 支持多种内置存储后端，也允许用户无需更改现有源码的情况下扩展自定义后端。&lt;/li>
+&lt;li>HugeGraph 支持全文检索，全文检索功能涉及到各语言分词，目前已内置 8 种中文分词器，也允许用户无需更改现有源码的情况下扩展自定义分词器。&lt;/li>
 &lt;/ol>
 &lt;h3 id="可扩展维度">可扩展维度&lt;/h3>
 &lt;p>目前插件方式提供如下几个维度的扩展项：&lt;/p>
@@ -6812,17 +6854,17 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/ul>
 &lt;h3 id="插件实现机制">插件实现机制&lt;/h3>
 &lt;ol>
-&lt;li>HugeGraph提供插件接口HugeGraphPlugin，通过Java SPI机制支持插件化&lt;/li>
-&lt;li>HugeGraph提供了4个扩展项注册函数：&lt;code>registerOptions()&lt;/code>、&lt;code>registerBackend()&lt;/code>、&lt;code>registerSerializer()&lt;/code>、&lt;code>registerAnalyzer()&lt;/code>&lt;/li>
-&lt;li>插件实现者实现相应的Options、Backend、Serializer或Analyzer的接口&lt;/li>
-&lt;li>插件实现者实现HugeGraphPlugin接口的&lt;code>register()&lt;/code>方法，在该方法中注册上述第3点所列的具体实现类，并打成jar包&lt;/li>
-&lt;li>插件使用者将jar包放在HugeGraph Server安装目录的&lt;code>plugins&lt;/code>目录下，修改相关配置项为插件自定义值，重启即可生效&lt;/li>
+&lt;li>HugeGraph 提供插件接口 HugeGraphPlugin，通过 Java SPI 机制支持插件化&lt;/li>
+&lt;li>HugeGraph 提供了 4 个扩展项注册函数：&lt;code>registerOptions()&lt;/code>、&lt;code>registerBackend()&lt;/code>、&lt;code>registerSerializer()&lt;/code>、&lt;code>registerAnalyzer()&lt;/code>&lt;/li>
+&lt;li>插件实现者实现相应的 Options、Backend、Serializer 或 Analyzer 的接口&lt;/li>
+&lt;li>插件实现者实现 HugeGraphPlugin 接口的&lt;code>register()&lt;/code>方法，在该方法中注册上述第 3 点所列的具体实现类，并打成 jar 包&lt;/li>
+&lt;li>插件使用者将 jar 包放在 HugeGraph Server 安装目录的&lt;code>plugins&lt;/code>目录下，修改相关配置项为插件自定义值，重启即可生效&lt;/li>
 &lt;/ol>
 &lt;h3 id="插件实现流程实例">插件实现流程实例&lt;/h3>
-&lt;h4 id="1-新建一个maven项目">1 新建一个maven项目&lt;/h4>
+&lt;h4 id="1-新建一个-maven-项目">1 新建一个 maven 项目&lt;/h4>
 &lt;h5 id="11-项目名称取名hugegraph-plugin-demo">1.1 项目名称取名：hugegraph-plugin-demo&lt;/h5>
-&lt;h5 id="12-添加hugegraph-core-jar包依赖">1.2 添加&lt;code>hugegraph-core&lt;/code> Jar包依赖&lt;/h5>
-&lt;p>maven pom.xml详细内容如下：&lt;/p>
+&lt;h5 id="12-添加hugegraph-core-jar-包依赖">1.2 添加&lt;code>hugegraph-core&lt;/code> Jar 包依赖&lt;/h5>
+&lt;p>maven pom.xml 详细内容如下：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;project&lt;/span> &lt;span style="color:#c4a000">xmlns=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://maven.apache.org/POM/4.0.0&amp;#34;&lt;/span>
@@ -6830,7 +6872,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#c4a000">xsi:schemaLocation=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;modelVersion&amp;gt;&lt;/span>4.0.0&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/modelVersion&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>com.baidu.hugegraph&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>org.apache.hugegraph&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;artifactId&amp;gt;&lt;/span>hugegraph-plugin-demo&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/artifactId&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;version&amp;gt;&lt;/span>1.0.0&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/version&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;packaging&amp;gt;&lt;/span>jar&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/packaging&amp;gt;&lt;/span>
@@ -6839,7 +6881,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;dependencies&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>com.baidu.hugegraph&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>org.apache.hugegraph&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;artifactId&amp;gt;&lt;/span>hugegraph-core&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/artifactId&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;version&amp;gt;&lt;/span>${project.version}&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/version&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;/dependency&amp;gt;&lt;/span>
@@ -6847,12 +6889,12 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/project&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="2-实现扩展功能">2 实现扩展功能&lt;/h4>
 &lt;h5 id="21-扩展自定义后端">2.1 扩展自定义后端&lt;/h5>
-&lt;h6 id="211-实现接口backendstoreprovider">2.1.1 实现接口BackendStoreProvider&lt;/h6>
+&lt;h6 id="211-实现接口-backendstoreprovider">2.1.1 实现接口 BackendStoreProvider&lt;/h6>
 &lt;ul>
-&lt;li>可实现接口：&lt;code>com.baidu.hugegraph.backend.store.BackendStoreProvider&lt;/code>&lt;/li>
-&lt;li>或者继承抽象类：&lt;code>com.baidu.hugegraph.backend.store.AbstractBackendStoreProvider&lt;/code>&lt;/li>
+&lt;li>可实现接口：&lt;code>org.apache.hugegraph.backend.store.BackendStoreProvider&lt;/code>&lt;/li>
+&lt;li>或者继承抽象类：&lt;code>org.apache.hugegraph.backend.store.AbstractBackendStoreProvider&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;p>以RocksDB后端RocksDBStoreProvider为例：&lt;/p>
+&lt;p>以 RocksDB 后端 RocksDBStoreProvider 为例：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">RocksDBStoreProvider&lt;/span> &lt;span style="color:#204a87;font-weight:bold">extends&lt;/span> &lt;span style="color:#000">AbstractBackendStoreProvider&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">protected&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">database&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
@@ -6879,8 +6921,8 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="212-实现接口backendstore">2.1.2 实现接口BackendStore&lt;/h6>
-&lt;p>BackendStore接口定义如下：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="212-实现接口-backendstore">2.1.2 实现接口 BackendStore&lt;/h6>
+&lt;p>BackendStore 接口定义如下：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">interface&lt;/span> &lt;span style="color:#000">BackendStore&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#8f5902;font-style:italic">// Store name
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">store&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
@@ -6920,7 +6962,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">Id&lt;/span> &lt;span style="color:#000">nextId&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">HugeType&lt;/span> &lt;span style="color:#000">type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="213-扩展自定义序列化器">2.1.3 扩展自定义序列化器&lt;/h6>
-&lt;p>序列化器必须继承抽象类：&lt;code>com.baidu.hugegraph.backend.serializer.AbstractSerializer&lt;/code>(&lt;code>implements GraphSerializer, SchemaSerializer&lt;/code>)
+&lt;p>序列化器必须继承抽象类：&lt;code>org.apache.hugegraph.backend.serializer.AbstractSerializer&lt;/code>(&lt;code>implements GraphSerializer, SchemaSerializer&lt;/code>)
 主要接口的定义如下：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">interface&lt;/span> &lt;span style="color:#000">GraphSerializer&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">BackendEntry&lt;/span> &lt;span style="color:#000">writeVertex&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">HugeVertex&lt;/span> &lt;span style="color:#000">vertex&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
@@ -6948,11 +6990,11 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="214-扩展自定义配置项">2.1.4 扩展自定义配置项&lt;/h6>
 &lt;p>增加自定义后端时，可能需要增加新的配置项，实现流程主要包括：&lt;/p>
 &lt;ul>
-&lt;li>增加配置项容器类，并实现接口&lt;code>com.baidu.hugegraph.config.OptionHolder&lt;/code>&lt;/li>
+&lt;li>增加配置项容器类，并实现接口&lt;code>org.apache.hugegraph.config.OptionHolder&lt;/code>&lt;/li>
 &lt;li>提供单例方法&lt;code>public static OptionHolder instance()&lt;/code>，并在对象初始化时调用方法&lt;code>OptionHolder.registerOptions()&lt;/code>&lt;/li>
 &lt;li>增加配置项声明，单值配置项类型为&lt;code>ConfigOption&lt;/code>、多值配置项类型为&lt;code>ConfigListOption&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;p>以RocksDB配置项定义为例：&lt;/p>
+&lt;p>以 RocksDB 配置项定义为例：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">RocksDBOptions&lt;/span> &lt;span style="color:#204a87;font-weight:bold">extends&lt;/span> &lt;span style="color:#000">OptionHolder&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#000">RocksDBOptions&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
@@ -6999,14 +7041,14 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="22-扩展自定义分词器">2.2 扩展自定义分词器&lt;/h5>
-&lt;p>分词器需要实现接口&lt;code>com.baidu.hugegraph.analyzer.Analyzer&lt;/code>，以实现一个SpaceAnalyzer空格分词器为例。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">com.baidu.hugegraph.plugin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;p>分词器需要实现接口&lt;code>org.apache.hugegraph.analyzer.Analyzer&lt;/code>，以实现一个 SpaceAnalyzer 空格分词器为例。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.apache.hugegraph.plugin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.Arrays&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.HashSet&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.Set&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.baidu.hugegraph.analyzer.Analyzer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.apache.hugegraph.analyzer.Analyzer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">SpaceAnalyzer&lt;/span> &lt;span style="color:#204a87;font-weight:bold">implements&lt;/span> &lt;span style="color:#000">Analyzer&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -7017,7 +7059,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-实现插件接口并进行注册">3. 实现插件接口，并进行注册&lt;/h4>
 &lt;p>插件注册入口为&lt;code>HugeGraphPlugin.register()&lt;/code>，自定义插件必须实现该接口方法，在其内部注册上述定义好的扩展项。
-接口&lt;code>com.baidu.hugegraph.plugin.HugeGraphPlugin&lt;/code>定义如下：&lt;/p>
+接口&lt;code>org.apache.hugegraph.plugin.HugeGraphPlugin&lt;/code>定义如下：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">interface&lt;/span> &lt;span style="color:#000">HugeGraphPlugin&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
@@ -7028,15 +7070,15 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">supportsMaxVersion&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>并且HugeGraphPlugin提供了4个静态方法用于注册扩展项：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>并且 HugeGraphPlugin 提供了 4 个静态方法用于注册扩展项：&lt;/p>
 &lt;ul>
 &lt;li>registerOptions(String name, String classPath)：注册配置项&lt;/li>
 &lt;li>registerBackend(String name, String classPath)：注册后端（BackendStoreProvider）&lt;/li>
 &lt;li>registerSerializer(String name, String classPath)：注册序列化器&lt;/li>
 &lt;li>registerAnalyzer(String name, String classPath)：注册分词器&lt;/li>
 &lt;/ul>
-&lt;p>下面以注册SpaceAnalyzer分词器为例：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">com.baidu.hugegraph.plugin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;p>下面以注册 SpaceAnalyzer 分词器为例：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.apache.hugegraph.plugin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">DemoPlugin&lt;/span> &lt;span style="color:#204a87;font-weight:bold">implements&lt;/span> &lt;span style="color:#000">HugeGraphPlugin&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -7050,15 +7092,15 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">HugeGraphPlugin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">registerAnalyzer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;demo&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">SpaceAnalyzer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">getName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">());&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="4-配置spi入口">4. 配置SPI入口&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="4-配置-spi-入口">4. 配置 SPI 入口&lt;/h4>
 &lt;ol>
-&lt;li>确保services目录存在：hugegraph-plugin-demo/resources/META-INF/services&lt;/li>
-&lt;li>在services目录下建立文本文件：com.baidu.hugegraph.plugin.HugeGraphPlugin&lt;/li>
-&lt;li>文件内容如下：com.baidu.hugegraph.plugin.DemoPlugin&lt;/li>
+&lt;li>确保 services 目录存在：hugegraph-plugin-demo/resources/META-INF/services&lt;/li>
+&lt;li>在 services 目录下建立文本文件：org.apache.hugegraph.plugin.HugeGraphPlugin&lt;/li>
+&lt;li>文件内容如下：org.apache.hugegraph.plugin.DemoPlugin&lt;/li>
 &lt;/ol>
-&lt;h4 id="5-打jar包">5. 打Jar包&lt;/h4>
-&lt;p>通过maven打包，在项目目录下执行命令&lt;code>mvn package&lt;/code>，在target目录下会生成Jar包文件。
-使用时将该Jar包拷到&lt;code>plugins&lt;/code>目录，重启服务即可生效。&lt;/p></description></item><item><title>Docs: HugeGraph-Loader Performance</title><link>/cn/docs/performance/hugegraph-loader-performance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/performance/hugegraph-loader-performance/</guid><description>
+&lt;h4 id="5-打-jar-包">5. 打 Jar 包&lt;/h4>
+&lt;p>通过 maven 打包，在项目目录下执行命令&lt;code>mvn package&lt;/code>，在 target 目录下会生成 Jar 包文件。
+使用时将该 Jar 包拷到&lt;code>plugins&lt;/code>目录，重启服务即可生效。&lt;/p></description></item><item><title>Docs: HugeGraph-Loader Performance</title><link>/cn/docs/performance/hugegraph-loader-performance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/performance/hugegraph-loader-performance/</guid><description>
 &lt;h2 id="使用场景">使用场景&lt;/h2>
 &lt;p>当要批量插入的图数据（包括顶点和边）条数为billion级别及以下，或者总数据量小于TB时，可以采用&lt;a href="/docs/quickstart/hugegraph-loader">HugeGraph-Loader&lt;/a>工具持续、高速导入图数据&lt;/p>
 &lt;h2 id="性能">性能&lt;/h2>
@@ -8689,14 +8731,77 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;p>通过输入图遍历语言Gremlin可实现图数据的高性能通用分析，并提供顶点的定制化多维路径查询等功能，提供3种图结果展示方式，包括：图形式、表格形式、Json形式，多维度展示数据形态，满足用户使用的多种场景需求。提供运行记录及常用语句收藏等功能，实现图操作的可追溯，以及查询输入的复用共享，快捷高效。支持图数据的导出，导出格式为Json格式。&lt;/p>
 &lt;h5 id="任务管理">任务管理&lt;/h5>
 &lt;p>对于需要遍历全图的Gremlin任务，索引的创建与重建等耗时较长的异步任务，平台提供相应的任务管理功能，实现异步任务的统一的管理与结果查看。&lt;/p>
-&lt;h3 id="2平台使用流程">2 平台使用流程&lt;/h3>
+&lt;h4 id="2-部署">2 部署&lt;/h4>
+&lt;p>有三种方式可以部署&lt;code>hugegraph-hubble&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>下载 toolchain 二进制包&lt;/li>
+&lt;li>源码编译&lt;/li>
+&lt;li>使用docker&lt;/li>
+&lt;/ul>
+&lt;h4 id="21-下载-toolchain-二进制包">2.1 下载 toolchain 二进制包&lt;/h4>
+&lt;p>&lt;code>hubble&lt;/code>项目在&lt;code>toolchain&lt;/code>项目中, 首先下载&lt;code>toolchain&lt;/code>的tar包&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>wget https://downloads.apache.org/incubator/hugegraph/1.0.0/apache-hugegraph-toolchain-incubating-&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>version&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>.tar.gz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tar -xvf apache-hugegraph-toolchain-incubating-&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>version&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>.tar.gz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> apache-hugegraph-toolchain-incubating-&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>version&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>.tar.gz/apache-hugegraph-hubble-incubating-&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>version&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>运行&lt;code>hubble&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>bin/start-hubble.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>随后我们可以看到&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>starting HugeGraphHubble ..............timed out with http status &lt;span style="color:#0000cf;font-weight:bold">502&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-08-30 20:38:34 &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>main&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>INFO &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> o.a.h.HugeGraphHubble &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span> - Starting HugeGraphHubble v1.0.0 on cpu05 with PID xxx &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>~/apache-hugegraph-toolchain-incubating-1.0.0/apache-hugegraph-hubble-incubating-1.0.0/lib/hubble-be-1.0.0.jar started by &lt;span style="color:#000">$USER&lt;/span> in ~/apache-hugegraph-toolchain-incubating-1.0.0/apache-hugegraph-hubble-incubating-1.0.0&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-08-30 20:38:38 &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>main&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>INFO &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> c.z.h.HikariDataSource &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span> - hugegraph-hubble-HikariCP - Start completed.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-08-30 20:38:41 &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>main&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>INFO &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> o.a.c.h.Http11NioProtocol &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span> - Starting ProtocolHandler &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http-nio-0.0.0.0-8088&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-08-30 20:38:41 &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>main&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>INFO &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> o.a.h.HugeGraphHubble &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span> - Started HugeGraphHubble in 7.379 seconds &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>JVM running &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> 8.499&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后使用浏览器访问 &lt;code>ip:8088&lt;/code> 可看到&lt;code>hubble&lt;/code>页面, 通过&lt;code>bin/stop-hubble.sh&lt;/code>则可以停止服务&lt;/p>
+&lt;h4 id="22-源码编译">2.2 源码编译&lt;/h4>
+&lt;p>&lt;strong>注意:&lt;/strong> 编译 hubble 需要用户本地环境有安装 &lt;code>Nodejs V16.x&lt;/code> 与 &lt;code>yarn&lt;/code> 环境&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>apt install curl build-essential
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh &lt;span style="color:#000;font-weight:bold">|&lt;/span> bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">source&lt;/span> ~/.bashrc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>nvm install &lt;span style="color:#0000cf;font-weight:bold">16&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后确认安装版本是否为 &lt;code>16.x&lt;/code> (请注意过高的 Node 版本会产生冲突)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>node -v
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用下列命令安装 &lt;code>yarn&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm install -g yarn
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>下载toolchain源码包&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>git clone https://github.com/apache/hugegraph-toolchain.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译&lt;code>hubble&lt;/code>, 它依赖 loader 和 client, 编译时需提前构建这些依赖 (后续可跳)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> incubator-hugegraph-toolchain
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo pip install -r hugegraph-hubble/hubble-dist/assembly/travis/requirements.txt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn install -pl hugegraph-client,hugegraph-loader -am -Dmaven.javadoc.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> -DskipTests -ntp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> hugegraph-hubble
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn -e compile package -Dmaven.javadoc.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> -Dmaven.test.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> -ntp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> apache-hugegraph-hubble-incubating*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>启动&lt;code>hubble&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>bin/start-hubble.sh -d
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="23-使用docker">2.3 使用Docker&lt;/h4>
+&lt;blockquote>
+&lt;p>&lt;strong>特别注意&lt;/strong>: 如果使用 docker 启动 hubble，且 hubble 和 server 位于同一宿主机，在后续 hubble 页面中设置 graph 的 hostname 的时候请不要直接设置 &lt;code>localhost/127.0.0.1&lt;/code>，这将指向 hubble 容器内部而非宿主机，导致无法连接到 server&lt;/p>
+&lt;/blockquote>
+&lt;p>我们可以使用 &lt;code>docker run -itd --name=hubble -p 8088:8088 hugegraph/hubble&lt;/code> 快速启动 &lt;a href="https://hub.docker.com/r/hugegraph/hubble">hubble&lt;/a>.&lt;/p>
+&lt;p>或者使用docker-compose启动hubble，另外如果hubble和graph在同一个docker网络下，可以使用graph的contain_name进行访问，而不需要宿主机的ip&lt;/p>
+&lt;p>使用&lt;code>docker-compose up -d&lt;/code>，&lt;code>docker-compose.yml&lt;/code>如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;3&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">graph_hubble&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">hugegraph/hugegraph&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">graph&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#0000cf;font-weight:bold">18080&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">8080&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">hubble&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">hugegraph/hubble&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">hubble&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#0000cf;font-weight:bold">8088&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">8088&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="3平台使用流程">3 平台使用流程&lt;/h3>
 &lt;p>平台的模块使用流程如下：&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/2平台使用流程.png" alt="image">
 &lt;/div>
-&lt;h3 id="3平台使用说明">3 平台使用说明&lt;/h3>
-&lt;h4 id="31图管理">3.1 图管理&lt;/h4>
-&lt;h5 id="311图创建">3.1.1 图创建&lt;/h5>
+&lt;h3 id="4平台使用说明">4 平台使用说明&lt;/h3>
+&lt;h4 id="41图管理">4.1 图管理&lt;/h4>
+&lt;h5 id="411图创建">4.1.1 图创建&lt;/h5>
 &lt;p>图管理模块下，点击【创建图】，通过填写图ID、图名称、主机名、端口号、用户名、密码的信息，实现多图的连接。&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/311图创建.png" alt="image">
@@ -8705,12 +8810,12 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/311图创建2.png" alt="image">
 &lt;/div>
-&lt;h5 id="312图访问">3.1.2 图访问&lt;/h5>
+&lt;h5 id="412图访问">4.1.2 图访问&lt;/h5>
 &lt;p>实现图空间的信息访问，进入后，可进行图的多维查询分析、元数据管理、数据导入、算法分析等操作。&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/312图访问.png" alt="image">
 &lt;/div>
-&lt;h5 id="313图管理">3.1.3 图管理&lt;/h5>
+&lt;h5 id="413图管理">4.1.3 图管理&lt;/h5>
 &lt;ol>
 &lt;li>用户通过对图的概览、搜索以及单图的信息编辑与删除，实现图的统一管理。&lt;/li>
 &lt;li>搜索范围：可对图名称和ID进行搜索。&lt;/li>
@@ -8718,14 +8823,14 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/313图管理.png" alt="image">
 &lt;/div>
-&lt;h4 id="32元数据建模列表图模式">3.2 元数据建模（列表+图模式）&lt;/h4>
-&lt;h5 id="321模块入口">3.2.1 模块入口&lt;/h5>
+&lt;h4 id="42元数据建模列表图模式">4.2 元数据建模（列表+图模式）&lt;/h4>
+&lt;h5 id="421模块入口">4.2.1 模块入口&lt;/h5>
 &lt;p>左侧导航处：&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/321元数据入口.png" alt="image">
 &lt;/div>
-&lt;h5 id="322属性类型">3.2.2 属性类型&lt;/h5>
-&lt;h6 id="3221创建">3.2.2.1 创建&lt;/h6>
+&lt;h5 id="422属性类型">4.2.2 属性类型&lt;/h5>
+&lt;h6 id="4221创建">4.2.2.1 创建&lt;/h6>
 &lt;ol>
 &lt;li>填写或选择属性名称、数据类型、基数，完成属性的创建。&lt;/li>
 &lt;li>创建的属性可作为顶点类型和边类型的属性。&lt;/li>
@@ -8738,7 +8843,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/3221属性创建2.png" alt="image">
 &lt;/div>
-&lt;h6 id="3222复用">3.2.2.2 复用&lt;/h6>
+&lt;h6 id="4222复用">4.2.2.2 复用&lt;/h6>
 &lt;ol>
 &lt;li>平台提供【复用】功能，可直接复用其他图的元数据。&lt;/li>
 &lt;li>选择需要复用的图ID，继续选择需要复用的属性，之后平台会进行是否冲突的校验，通过后，可实现元数据的复用。&lt;/li>
@@ -8751,12 +8856,12 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;div style="text-align: center;">
 &lt;img src="/docs/images/images-hubble/3222属性复用2.png" alt="image">
 &lt;/div>
-&lt;h6 id="3223管理">3.2.2.3 管理&lt;/h6>
+&lt;h6 id="4223管理">4.2.2.3 管理&lt;/h6>
 &lt;ol>
 &lt;li>在属性列表中可进行单条删除或批量删除操作。&lt;/li>
 &lt;/ol>
-&lt;h5 id="323顶点类型">3.2.3 顶点类型&lt;/h5>
-&lt;h6 id="3231创建">3.2.3.1 创建&lt;/h6>
+&lt;h5 id="423顶点类型">4.2.3 顶点类型&lt;/h5>
+&lt;h6 id="4231创建">4.2.3.1 创建&lt;/h6>
 &lt;ol>
 &lt;li>填写或选择顶点类型名称、ID策略、关联属性、主键属性，顶点样式、查询结果中顶点下方展示的内容，以及索引的信息：包括是否创建类型索引，及属性索引的具体内容，完成顶点类型的创建。&lt;/li>
 &lt;/ol>
@@ -8768,12 +8873,12 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/3231顶点创建2.png" alt="image">
 &lt;/center>
-&lt;h6 id="3232复用">3.2.3.2 复用&lt;/h6>
+&lt;h6 id="4232复用">4.2.3.2 复用&lt;/h6>
 &lt;ol>
 &lt;li>顶点类型的复用，会将此类型关联的属性和属性索引一并复用。&lt;/li>
 &lt;li>复用功能使用方法类似属性的复用，见3.2.2.2。&lt;/li>
 &lt;/ol>
-&lt;h6 id="3233管理">3.2.3.3 管理&lt;/h6>
+&lt;h6 id="4233管理">4.2.3.3 管理&lt;/h6>
 &lt;ol>
 &lt;li>
 &lt;p>可进行编辑操作，顶点样式、关联类型、顶点展示内容、属性索引可编辑，其余不可编辑。&lt;/p>
@@ -8785,8 +8890,8 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/3233顶点删除.png" alt="image">
 &lt;/center>
-&lt;h5 id="324边类型">3.2.4 边类型&lt;/h5>
-&lt;h6 id="3241创建">3.2.4.1 创建&lt;/h6>
+&lt;h5 id="424边类型">4.2.4 边类型&lt;/h5>
+&lt;h6 id="4241创建">4.2.4.1 创建&lt;/h6>
 &lt;ol>
 &lt;li>填写或选择边类型名称、起点类型、终点类型、关联属性、是否允许多次连接、边样式、查询结果中边下方展示的内容，以及索引的信息：包括是否创建类型索引，及属性索引的具体内容，完成边类型的创建。&lt;/li>
 &lt;/ol>
@@ -8798,29 +8903,29 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/3241边创建2.png" alt="image">
 &lt;/center>
-&lt;h6 id="3242复用">3.2.4.2 复用&lt;/h6>
+&lt;h6 id="4242复用">4.2.4.2 复用&lt;/h6>
 &lt;ol>
 &lt;li>边类型的复用，会将此类型的起点类型、终点类型、关联的属性和属性索引一并复用。&lt;/li>
 &lt;li>复用功能使用方法类似属性的复用，见3.2.2.2。&lt;/li>
 &lt;/ol>
-&lt;h6 id="3243管理">3.2.4.3 管理&lt;/h6>
+&lt;h6 id="4243管理">4.2.4.3 管理&lt;/h6>
 &lt;ol>
 &lt;li>可进行编辑操作，边样式、关联属性、边展示内容、属性索引可编辑，其余不可编辑，同顶点类型。&lt;/li>
 &lt;li>可进行单条删除或批量删除操作。&lt;/li>
 &lt;/ol>
-&lt;h5 id="325索引类型">3.2.5 索引类型&lt;/h5>
+&lt;h5 id="425索引类型">4.2.5 索引类型&lt;/h5>
 &lt;p>展示顶点类型和边类型的顶点索引和边索引。&lt;/p>
-&lt;h4 id="33数据导入">3.3 数据导入&lt;/h4>
+&lt;h4 id="43数据导入">4.3 数据导入&lt;/h4>
 &lt;p>数据导入的使用流程如下：&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/33导入流程.png" alt="image">
 &lt;/center>
-&lt;h5 id="331模块入口">3.3.1 模块入口&lt;/h5>
+&lt;h5 id="431模块入口">4.3.1 模块入口&lt;/h5>
 &lt;p>左侧导航处：&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/331导入入口.png" alt="image">
 &lt;/center>
-&lt;h5 id="332创建任务">3.3.2 创建任务&lt;/h5>
+&lt;h5 id="432创建任务">4.3.2 创建任务&lt;/h5>
 &lt;ol>
 &lt;li>填写任务名称和备注（非必填），可以创建导入任务。&lt;/li>
 &lt;li>可创建多个导入任务，并行导入。&lt;/li>
@@ -8828,7 +8933,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/332创建任务.png" alt="image">
 &lt;/center>
-&lt;h5 id="333上传文件">3.3.3 上传文件&lt;/h5>
+&lt;h5 id="433上传文件">4.3.3 上传文件&lt;/h5>
 &lt;ol>
 &lt;li>上传需要构图的文件，目前支持的格式为CSV，后续会不断更新。&lt;/li>
 &lt;li>可同时上传多个文件。&lt;/li>
@@ -8836,7 +8941,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/333上传文件.png" alt="image">
 &lt;/center>
-&lt;h5 id="334设置数据映射">3.3.4 设置数据映射&lt;/h5>
+&lt;h5 id="434设置数据映射">4.3.4 设置数据映射&lt;/h5>
 &lt;ol>
 &lt;li>
 &lt;p>对上传的文件分别设置数据映射，包括文件设置和类型设置&lt;/p>
@@ -8869,7 +8974,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/334设置映射2.png" alt="image">
 &lt;/center>
-&lt;h5 id="335导入数据">3.3.5 导入数据&lt;/h5>
+&lt;h5 id="435导入数据">4.3.5 导入数据&lt;/h5>
 &lt;p>导入前需要填写导入设置参数，填写完成后，可开始向图库中导入数据&lt;/p>
 &lt;ol>
 &lt;li>导入设置&lt;/li>
@@ -8891,18 +8996,18 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/335导入详情.png" alt="image">
 &lt;/center>
-&lt;h4 id="34数据分析">3.4 数据分析&lt;/h4>
-&lt;h5 id="341模块入口">3.4.1 模块入口&lt;/h5>
+&lt;h4 id="44数据分析">4.4 数据分析&lt;/h4>
+&lt;h5 id="441模块入口">4.4.1 模块入口&lt;/h5>
 &lt;p>左侧导航处：&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/341分析入口.png" alt="image">
 &lt;/center>
-&lt;h5 id="342多图切换">3.4.2 多图切换&lt;/h5>
+&lt;h5 id="442多图切换">4.4.2 多图切换&lt;/h5>
 &lt;p>通过左侧切换入口，灵活切换多图的操作空间&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/342多图切换.png" alt="image">
 &lt;/center>
-&lt;h5 id="343图分析与处理">3.4.3 图分析与处理&lt;/h5>
+&lt;h5 id="443图分析与处理">4.4.3 图分析与处理&lt;/h5>
 &lt;p>HugeGraph支持Apache TinkerPop3的图遍历查询语言Gremlin，Gremlin是一种通用的图数据库查询语言，通过输入Gremlin语句，点击执行，即可执行图数据的查询分析操作，并可实现顶点/边的创建及删除、顶点/边的属性修改等。&lt;/p>
 &lt;p>Gremlin查询后，下方为图结果展示区域，提供3种图结果展示方式，分别为：【图模式】、【表格模式】、【Json模式】。&lt;/p>
 &lt;p>支持缩放、居中、全屏、导出等操作。&lt;/p>
@@ -8918,9 +9023,9 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/343图分析-json.png" alt="image">
 &lt;/center>
-&lt;h5 id="344数据详情">3.4.4 数据详情&lt;/h5>
+&lt;h5 id="444数据详情">4.4.4 数据详情&lt;/h5>
 &lt;p>点击顶点/边实体，可查看顶点/边的数据详情，包括：顶点/边类型，顶点ID，属性及对应值，拓展图的信息展示维度，提高易用性。&lt;/p>
-&lt;h5 id="345图结果的多维路径查询">3.4.5 图结果的多维路径查询&lt;/h5>
+&lt;h5 id="445图结果的多维路径查询">4.4.5 图结果的多维路径查询&lt;/h5>
 &lt;p>除了全局的查询外，可针对查询结果中的顶点进行深度定制化查询以及隐藏操作，实现图结果的定制化挖掘。&lt;/p>
 &lt;p>右击顶点，出现顶点的菜单入口，可进行展示、查询、隐藏等操作。&lt;/p>
 &lt;ul>
@@ -8932,8 +9037,8 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/345定制路径查询.png" alt="image">
 &lt;/center>
-&lt;h5 id="346新增顶点边">3.4.6 新增顶点/边&lt;/h5>
-&lt;h6 id="3461新增顶点">3.4.6.1 新增顶点&lt;/h6>
+&lt;h5 id="446新增顶点边">4.4.6 新增顶点/边&lt;/h5>
+&lt;h6 id="4461新增顶点">4.4.6.1 新增顶点&lt;/h6>
 &lt;p>在图区可通过两个入口，动态新增顶点，如下：&lt;/p>
 &lt;ol>
 &lt;li>点击图区面板，出现添加顶点入口&lt;/li>
@@ -8948,9 +9053,9 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/346新增顶点2.png" alt="image">
 &lt;/center>
-&lt;h6 id="3462新增边">3.4.6.2 新增边&lt;/h6>
+&lt;h6 id="4462新增边">4.4.6.2 新增边&lt;/h6>
 &lt;p>右击图结果中的顶点，可增加该点的出边或者入边。&lt;/p>
-&lt;h5 id="347执行记录与收藏的查询">3.4.7 执行记录与收藏的查询&lt;/h5>
+&lt;h5 id="447执行记录与收藏的查询">4.4.7 执行记录与收藏的查询&lt;/h5>
 &lt;ol>
 &lt;li>图区下方记载每次查询记录，包括：查询时间、执行类型、内容、状态、耗时、以及【收藏】和【加载】操作，实现图执行的全方位记录，有迹可循，并可对执行内容快速加载复用&lt;/li>
 &lt;li>提供语句的收藏功能，可对常用语句进行收藏操作，方便高频语句快速调用&lt;/li>
@@ -8958,13 +9063,13 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/347收藏.png" alt="image">
 &lt;/center>
-&lt;h4 id="35任务管理">3.5 任务管理&lt;/h4>
-&lt;h5 id="351模块入口">3.5.1 模块入口&lt;/h5>
+&lt;h4 id="45任务管理">4.5 任务管理&lt;/h4>
+&lt;h5 id="451模块入口">4.5.1 模块入口&lt;/h5>
 &lt;p>左侧导航处：&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/351任务管理入口.png" alt="image">
 &lt;/center>
-&lt;h5 id="352任务管理">3.5.2 任务管理&lt;/h5>
+&lt;h5 id="452任务管理">4.5.2 任务管理&lt;/h5>
 &lt;ol>
 &lt;li>提供异步任务的统一的管理与结果查看，异步任务包括4类，分别为：&lt;/li>
 &lt;/ol>
@@ -8983,7 +9088,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;center>
 &lt;img src="/docs/images/images-hubble/352任务列表.png" alt="image">
 &lt;/center>
-&lt;h5 id="353gremlin异步任务">3.5.3 Gremlin异步任务&lt;/h5>
+&lt;h5 id="453gremlin异步任务">4.5.3 Gremlin异步任务&lt;/h5>
 &lt;p>1.创建任务&lt;/p>
 &lt;ul>
 &lt;li>数据分析模块，目前支持两种Gremlin操作，Gremlin查询和Gremlin任务；若用户切换到Gremlin任务，点击执行后，在异步任务中心会建立一条异步任务；
@@ -9003,9 +9108,9 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;ul>
 &lt;li>结果通过json形式展示&lt;/li>
 &lt;/ul>
-&lt;h5 id="354olap算法任务">3.5.4 OLAP算法任务&lt;/h5>
+&lt;h5 id="454olap算法任务">4.5.4 OLAP算法任务&lt;/h5>
 &lt;p>Hubble上暂未提供可视化的OLAP算法执行，可调用RESTful API进行OLAP类算法任务，在任务管理中通过ID找到相应任务，查看进度与结果等。&lt;/p>
-&lt;h5 id="355删除元数据重建索引">3.5.5 删除元数据、重建索引&lt;/h5>
+&lt;h5 id="455删除元数据重建索引">4.5.5 删除元数据、重建索引&lt;/h5>
 &lt;p>1.创建任务&lt;/p>
 &lt;ul>
 &lt;li>在元数据建模模块中，删除元数据时，可建立删除元数据的异步任务&lt;/li>
@@ -12050,7 +12155,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;li>高级版使用POST方法，根据起始顶点，查找恰好N步可达的邻居，与基础版的不同在于：
 &lt;ul>
 &lt;li>支持只统计邻居数量&lt;/li>
-&lt;li>支持边属性过滤&lt;/li>
+&lt;li>支持顶点和边属性过滤&lt;/li>
 &lt;li>支持返回到达邻居的最短路径&lt;/li>
 &lt;/ul>
 &lt;/li>
@@ -12062,7 +12167,7 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;li>高级版使用POST方法，根据起始顶点，查找N步以内可达的所有邻居，与基础版的不同在于：
 &lt;ul>
 &lt;li>支持只统计邻居数量&lt;/li>
-&lt;li>支持边属性过滤&lt;/li>
+&lt;li>支持顶点和边属性过滤&lt;/li>
 &lt;li>支持返回到达邻居的最短路径&lt;/li>
 &lt;/ul>
 &lt;/li>
@@ -12279,11 +12384,21 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;h6 id="params-1">Params&lt;/h6>
 &lt;ul>
 &lt;li>source：起始顶点id，必填项&lt;/li>
-&lt;li>从起始点出发的Step，必填项，结构如下：
+&lt;li>steps: 从起始点出发的Steps，必填项，结构如下：
 &lt;ul>
 &lt;li>direction：表示边的方向（OUT,IN,BOTH），默认是BOTH&lt;/li>
-&lt;li>labels：边的类型列表&lt;/li>
-&lt;li>properties：通过属性的值过滤边&lt;/li>
+&lt;li>edge_steps：边Step集合，支持对单边的类型和属性过滤，如果为空，则不过滤
+&lt;ul>
+&lt;li>label：边类型&lt;/li>
+&lt;li>properties：边属性&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>vertex_steps：顶点Step集合，支持对单点的类型和属性过滤，如果为空，则不过滤
+&lt;ul>
+&lt;li>label：顶点类型&lt;/li>
+&lt;li>properties：顶点属性&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>max_degree：查询过程中，单个顶点遍历的最大邻接边数目，默认为 10000 (注: 0.12版之前 step 内仅支持 degree 作为参数名, 0.12开始统一使用 max_degree, 并向下兼容 degree 写法)&lt;/li>
 &lt;li>skip_degree：用于设置查询过程中舍弃超级顶点的最小边数，即当某个顶点的邻接边数目大于 skip_degree 时，完全舍弃该顶点。选填项，如果开启时，需满足 &lt;code>skip_degree &amp;gt;= max_degree&lt;/code> 约束，默认为0 (不启用)，表示不跳过任何点 (注意: 开启此配置后，遍历时会尝试访问一个顶点的 skip_degree 条边，而不仅仅是 max_degree 条边，这样有额外的遍历开销，对查询性能影响可能有较大影响，请确认理解后再开启)&lt;/li>
 &lt;/ul>
@@ -12292,19 +12407,31 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;li>nearest：nearest为true时，代表起始顶点到达结果顶点的最短路径长度为depth，不存在更短的路径；nearest为false时，代表起始顶点到结果顶点有一条长度为depth的路径（未必最短且可以有环），选填项，默认为true&lt;/li>
 &lt;li>count_only：Boolean值，true表示只统计结果的数目，不返回具体结果；false表示返回具体的结果，默认为false&lt;/li>
 &lt;li>with_path：true表示返回起始点到每个邻居的最短路径，false表示不返回起始点到每个邻居的最短路径，选填项，默认为false&lt;/li>
-&lt;li>with_vertex，选填项，默认为false：
+&lt;li>with_edge，选填项，默认为false：
 &lt;ul>
-&lt;li>true表示返回结果包含完整的顶点信息（路径中的全部顶点）
+&lt;li>如果设置为true，则结果将包含所有边的完整信息，即路径中的所有边
 &lt;ul>
-&lt;li>with_path为true时，返回所有路径中的顶点的完整信息&lt;/li>
-&lt;li>with_path为false时，返回所有邻居的完整信息&lt;/li>
+&lt;li>当with_path为true时，将返回所有路径中的边的完整信息&lt;/li>
+&lt;li>当with_path为false时，不返回任何信息&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>false时表示只返回顶点id&lt;/li>
+&lt;li>如果设置为false，则仅返回边的id&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>with_vertex，选填项，默认为false：
+&lt;ul>
+&lt;li>如果设置为true，则结果将包含所有顶点的完整信息，即路径中的所有顶点
+&lt;ul>
+&lt;li>当with_path为true时，将返回所有路径中的顶点的完整信息&lt;/li>
+&lt;li>当with_path为false时，返回所有邻居顶点的完整信息&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果设置为false，则仅返回顶点的id&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>capacity：遍历过程中最大的访问的顶点数目，选填项，默认为10000000&lt;/li>
 &lt;li>limit：返回的顶点的最大数目，选填项，默认为10000000&lt;/li>
+&lt;li>traverse_mode: 遍历方式，可选择“breadth_first_search”或“depth_first_search”作为参数，默认为“breadth_first_search”&lt;/li>
 &lt;/ul>
 &lt;h5 id="3222-使用方法">3.2.2.2 使用方法&lt;/h5>
 &lt;h6 id="method--url-1">Method &amp;amp; Url&lt;/h6>
@@ -12312,12 +12439,34 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="request-body">Request Body&lt;/h6>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;source&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;step&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;steps&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;direction&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;BOTH&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;labels&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;knows&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;edge_steps&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;knows&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;P.gt(0.1)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;P.gt(0.1)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;vertex_steps&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;P.lt(32)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;max_degree&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10000&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;skip_degree&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">100000&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
@@ -12325,15 +12474,15 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;nearest&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;limit&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10000&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_path&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_path&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="response-status-1">Response Status&lt;/h6>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="response-body-1">Response Body&lt;/h6>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">3&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;kout&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
@@ -12341,19 +12490,13 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
@@ -12365,16 +12508,6 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">29&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Beijing&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Beijing&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
@@ -12396,6 +12529,34 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;lang&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">328&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;edges&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;S1:marko&amp;gt;1&amp;gt;20160110&amp;gt;S1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;knows&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0.5&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;date&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;20160110&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;S1:marko&amp;gt;2&amp;gt;&amp;gt;S2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0.4&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;date&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;20171210&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
@@ -12453,11 +12614,26 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;h6 id="params-3">Params&lt;/h6>
 &lt;ul>
 &lt;li>source：起始顶点id，必填项&lt;/li>
-&lt;li>从起始点出发的Step，必填项，结构如下：
+&lt;li>steps: 从起始点出发的Steps，必填项，结构如下：
 &lt;ul>
 &lt;li>direction：表示边的方向（OUT,IN,BOTH），默认是BOTH&lt;/li>
-&lt;li>labels：边的类型列表&lt;/li>
-&lt;li>properties：通过属性的值过滤边&lt;/li>
+&lt;li>从起始点出发的Steps，必填项，结构如下：
+&lt;ul>
+&lt;li>direction：表示边的方向（OUT,IN,BOTH），默认是BOTH&lt;/li>
+&lt;li>edge_steps：边Step集合，支持对单边的类型和属性过滤，如果为空，则不过滤
+&lt;ul>
+&lt;li>label：边类型&lt;/li>
+&lt;li>properties：边属性&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>vertex_steps：顶点Step集合，支持对单点的类型和属性过滤，如果为空，则不过滤
+&lt;ul>
+&lt;li>label：顶点类型&lt;/li>
+&lt;li>properties：顶点属性&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>max_degree：查询过程中，单个顶点遍历的最大邻接边数目，默认为 10000 (注: 0.12版之前 step 内仅支持 degree 作为参数名, 0.12开始统一使用 max_degree, 并向下兼容 degree 写法)&lt;/li>
 &lt;li>skip_degree：用于设置查询过程中舍弃超级顶点的最小边数，即当某个顶点的邻接边数目大于 skip_degree 时，完全舍弃该顶点。选填项，如果开启时，需满足 &lt;code>skip_degree &amp;gt;= max_degree&lt;/code> 约束，默认为0 (不启用)，表示不跳过任何点 (注意: 开启此配置后，遍历时会尝试访问一个顶点的 skip_degree 条边，而不仅仅是 max_degree 条边，这样有额外的遍历开销，对查询性能影响可能有较大影响，请确认理解后再开启)&lt;/li>
 &lt;/ul>
@@ -12465,15 +12641,26 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;li>max_depth：步数，必填项&lt;/li>
 &lt;li>count_only：Boolean值，true表示只统计结果的数目，不返回具体结果；false表示返回具体的结果，默认为false&lt;/li>
 &lt;li>with_path：true表示返回起始点到每个邻居的最短路径，false表示不返回起始点到每个邻居的最短路径，选填项，默认为false&lt;/li>
-&lt;li>with_vertex，选填项，默认为false：
+&lt;li>with_edge，选填项，默认为false：
 &lt;ul>
-&lt;li>true表示返回结果包含完整的顶点信息（路径中的全部顶点）
+&lt;li>如果设置为true，则结果将包含所有边的完整信息，即路径中的所有边
 &lt;ul>
-&lt;li>with_path为true时，返回所有路径中的顶点的完整信息&lt;/li>
-&lt;li>with_path为false时，返回所有邻居的完整信息&lt;/li>
+&lt;li>当with_path为true时，将返回所有路径中的边的完整信息&lt;/li>
+&lt;li>当with_path为false时，不返回任何信息&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>false时表示只返回顶点id&lt;/li>
+&lt;li>如果设置为false，则仅返回边的id&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>with_vertex，选填项，默认为false：
+&lt;ul>
+&lt;li>如果设置为true，则结果将包含所有顶点的完整信息，即路径中的所有顶点
+&lt;ul>
+&lt;li>当with_path为true时，将返回所有路径中的顶点的完整信息&lt;/li>
+&lt;li>当with_path为false时，返回所有邻居顶点的完整信息&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果设置为false，则仅返回顶点的id&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>limit：返回的顶点的最大数目，选填项，默认为10000000&lt;/li>
@@ -12484,56 +12671,55 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="request-body-1">Request Body&lt;/h6>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;source&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;step&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;steps&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;direction&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;BOTH&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;labels&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;knows&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;P.gt(0.1)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;edge_steps&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;knows&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;vertex_steps&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;P.gt(28)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;max_degree&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10000&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;skip_degree&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">100000&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;max_depth&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">3&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;limit&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10000&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_path&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_path&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;with_edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="response-status-3">Response Status&lt;/h6>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="response-body-3">Response Body&lt;/h6>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">6&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;kneighbor&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;paths&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
@@ -12546,7 +12732,14 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;objects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
@@ -12582,16 +12775,6 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vadas&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;age&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">27&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;city&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Hongkong&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vertex&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -12609,6 +12792,60 @@ HugeGraph Toolchain 版本: toolchain-1.0.0&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;lang&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">328&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;edges&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;S1:josh&amp;gt;2&amp;gt;&amp;gt;S2:ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2:ripple&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1.0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;date&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;20171210&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;S1:marko&amp;gt;2&amp;gt;&amp;gt;S2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0.4&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;date&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;20171210&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;S1:marko&amp;gt;1&amp;gt;20130220&amp;gt;S1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;knows&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:marko&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:josh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1.0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;date&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;20130220&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;S1:peter&amp;gt;2&amp;gt;&amp;gt;S2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1:peter&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;person&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inV&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2:lop&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inVLabel&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;software&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;weight&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0.2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;date&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;20170324&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
