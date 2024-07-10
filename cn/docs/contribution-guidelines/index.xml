@@ -55,10 +55,10 @@
 &lt;h5 id="321-添加第三方依赖">3.2.1 添加第三方依赖&lt;/h5>
 &lt;p>如果我们要在 &lt;code>HugeGraph&lt;/code> 项目中添加新的第三方依赖, 我们需要做下面的几件事情：&lt;/p>
 &lt;ol>
-&lt;li>找到第三方依赖的仓库，将依赖的 &lt;code>license&lt;/code> 文件放到 &lt;a href="https://github.com/apache/incubator-hugegraph/tree/master/hugegraph-dist/release-docs/licenses">./hugegraph-dist/release-docs/licenses/&lt;/a> 路径下。&lt;/li>
-&lt;li>在&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-dist/release-docs/LICENSE">./hugegraph-dist/release-docs/LICENSE&lt;/a> 中声明该依赖的 &lt;code>LICENSE&lt;/code> 信息。&lt;/li>
-&lt;li>找到仓库里的 NOTICE 文件，将其追加到 &lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-dist/release-docs/NOTICE">./hugegraph-dist/release-docs/NOTICE&lt;/a> 文件后面（如果没有NOTICE文件则跳过这一步）。&lt;/li>
-&lt;li>本地执行&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-dist/scripts/dependency/regenerate_known_dependencies.sh">./hugegraph-dist/scripts/dependency/regenerate_known_dependencies.sh&lt;/a> 脚本来更新依赖列表&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-dist/scripts/dependency/known-dependencies.txt">known-dependencies.txt&lt;/a> (或者手动更新)。&lt;/li>
+&lt;li>找到第三方依赖的仓库，将依赖的 &lt;code>license&lt;/code> 文件放到 &lt;a href="https://github.com/apache/incubator-hugegraph/tree/master/hugegraph-server/hugegraph-dist/release-docs/licenses">./hugegraph-dist/release-docs/licenses/&lt;/a> 路径下。&lt;/li>
+&lt;li>在&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-server/hugegraph-dist/release-docs/LICENSE">./hugegraph-dist/release-docs/LICENSE&lt;/a> 中声明该依赖的 &lt;code>LICENSE&lt;/code> 信息。&lt;/li>
+&lt;li>找到仓库里的 NOTICE 文件，将其追加到 &lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-server/hugegraph-dist/release-docs/NOTICE">./hugegraph-dist/release-docs/NOTICE&lt;/a> 文件后面（如果没有NOTICE文件则跳过这一步）。&lt;/li>
+&lt;li>本地执行&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-server/hugegraph-dist/scripts/dependency/regenerate_known_dependencies.sh">./hugegraph-dist/scripts/dependency/regenerate_known_dependencies.sh&lt;/a> 脚本来更新依赖列表&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-server/hugegraph-dist/scripts/dependency/known-dependencies.txt">known-dependencies.txt&lt;/a> (或者手动更新)。&lt;/li>
 &lt;/ol>
 &lt;p>&lt;strong>例如&lt;/strong>：在项目中引入了第三方新依赖 -&amp;gt; &lt;code>ant-1.9.1.jar&lt;/code>&lt;/p>
 &lt;ul>
@@ -157,12 +157,17 @@
 &lt;/li>
 &lt;/ol></description></item><item><title>Docs: 验证 Apache 发版</title><link>/cn/docs/contribution-guidelines/validate-release/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/contribution-guidelines/validate-release/</guid><description>
 &lt;blockquote>
-&lt;p>Note: 这篇文档会持续更新。&lt;/p>
+&lt;p>Note: 这篇文档会持续更新。
+建议使用 Java11 验证测试，从 1.5.0 版本开始(除 client 外) 不再支持 Java8&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="验证阶段">验证阶段&lt;/h2>
-&lt;p>当内部的临时发布和打包工作完成后, 其他的社区开发者(尤其是 PMC)需要参与到&lt;a href="https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist">验证环节&lt;/a>确保某个人发布版本的&amp;quot;正确性 + 完整性&amp;quot;, 这里需要&lt;strong>每个人&lt;/strong>都尽量参与, 然后后序&lt;strong>邮件回复&lt;/strong>的时候说明自己&lt;strong>已检查&lt;/strong>了哪些项. (下面是核心项)&lt;/p>
+&lt;p>当内部的临时发布和打包工作完成后，其他的社区开发者 (尤其是 PMC)
+需要参与到&lt;a href="https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist">验证环节&lt;/a>
+确保某个人发布版本的&amp;quot;正确性 + 完整性&amp;quot;, 这里需要&lt;strong>每个人&lt;/strong>都尽量参与，然后后序&lt;strong>邮件回复&lt;/strong>的时候说明自己
+&lt;strong>已检查&lt;/strong>了哪些项。(下面是核心项)&lt;/p>
 &lt;h4 id="1-准备工作">1. 准备工作&lt;/h4>
-&lt;p>如果本地没有 svn 或 gpg 或 wget 环境, 建议先安装一下 (windows 推荐使用 WSL2 环境, 或者至少是 &lt;code>git-bash&lt;/code>), 同时确保安装Java(推荐11)和maven软件。&lt;/p>
+&lt;p>如果本地没有 svn 或 gpg 或 wget 环境，建议先安装一下 (windows 推荐使用 WSL2 环境，
+或者至少是 &lt;code>git-bash&lt;/code>), 同时确保安装 Java(推荐 11) 和 maven 软件。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 1. 安装svn&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># ubuntu/debian&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt install subversion -y
@@ -185,27 +190,30 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># MacOS&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install wget
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 4. 下载 hugegraph-svn 目录 (版本号注意填写此次验证版本, 这里以1.0.0为例)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>svn co https://dist.apache.org/repos/dist/dev/incubator/hugegraph/1.0.0/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 4. 下载 hugegraph-svn 目录 (版本号注意填写此次验证版本)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>svn co https://dist.apache.org/repos/dist/dev/incubator/hugegraph/1.x.x/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># (注) 如果出现 svn 下载某个文件速度很慢的情况, 可以考虑 wget 单个文件下载, 如下 (或考虑使用 VPN / 代理)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wget https://dist.apache.org/repos/dist/dev/incubator/hugegraph/1.0.0/apache-hugegraph-toolchain-incubating-1.0.0.tar.gz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wget https://dist.apache.org/repos/dist/dev/incubator/hugegraph/1.x.x/apache-hugegraph-toolchain-incubating-1.x.x.tar.gz
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="2-检查-hash-值">2. 检查 hash 值&lt;/h4>
-&lt;p>首先需要检查 &lt;code>source + binary&lt;/code> 包的文件完整性, 通过 &lt;code>shasum&lt;/code> 进行校验, 确保和发布到 apache/github 上的 hash 值一致 (一般是 sha512)&lt;/p>
+&lt;p>首先需要检查 &lt;code>source + binary&lt;/code> 包的文件完整性，通过 &lt;code>shasum&lt;/code> 进行校验，确保和发布到 apache/github 上的
+hash 值一致 (一般是 sha512)&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>执行命令:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">for&lt;/span> i in *.tar.gz&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#000">$i&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> shasum -a &lt;span style="color:#0000cf;font-weight:bold">512&lt;/span> --check &lt;span style="color:#000">$i&lt;/span>.sha512&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">done&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-检查-gpg-签名">3. 检查 gpg 签名&lt;/h4>
-&lt;p>这个就是为了确保发布的包是由&lt;strong>可信赖&lt;/strong>的人上传的, 假设 tom 签名后上传, 其他人应该下载 A 的&lt;strong>公钥&lt;/strong>然后进行&lt;strong>签名确认&lt;/strong>, 相关命令:&lt;/p>
+&lt;p>这个就是为了确保发布的包是由&lt;strong>可信赖&lt;/strong>的人上传的，假设 tom 签名后上传，其他人应该下载 A 的&lt;strong>公钥&lt;/strong>
+然后进行&lt;strong>签名确认&lt;/strong>, 相关命令：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 1. 下载项目可信赖公钥到本地 (首次需要) &amp;amp; 导入&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl https://downloads.apache.org/incubator/hugegraph/KEYS &amp;gt; KEYS
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg --import KEYS
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 导入后可以看到如下输出, 这代表导入了 3 个用户公钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 导入后可以看到如下输出, 这代表导入了 x 个用户公钥&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: /home/ubuntu/.gnupg/trustdb.gpg: trustdb created
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: key BA7E78F8A81A885E: public key &lt;span style="color:#4e9a06">&amp;#34;imbajin (apache mail) &amp;lt;jin@apache.org&amp;gt;&amp;#34;&lt;/span> imported
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: key 818108E7924549CC: public key &lt;span style="color:#4e9a06">&amp;#34;vaughn &amp;lt;vaughn@apache.org&amp;gt;&amp;#34;&lt;/span> imported
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: key 28DCAED849C4180E: public key &lt;span style="color:#4e9a06">&amp;#34;coderzc (CODE SIGNING KEY) &amp;lt;zhaocong@apache.org&amp;gt;&amp;#34;&lt;/span> imported
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: Total number processed: &lt;span style="color:#0000cf;font-weight:bold">3&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: imported: &lt;span style="color:#0000cf;font-weight:bold">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>....
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: Total number processed: x
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg: imported: x
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 2. 信任发版用户 (你需要信任 n 个邮件里提到的 gpg 用户名, ＞1则依次执行相同操作)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpg --edit-key &lt;span style="color:#000">$USER&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># 这里填写具体用户名或者公钥串, 回车进入交互模式&lt;/span>
@@ -230,10 +238,10 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">for&lt;/span> i in *.tar.gz&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#000">$i&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> gpg --verify &lt;span style="color:#000">$i&lt;/span>.asc &lt;span style="color:#000">$i&lt;/span> &lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">done&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>先确认了整体的&amp;quot;完整性 + 一致性&amp;quot;, 然后接下来确认具体的内容 (&lt;strong>关键&lt;/strong>)&lt;/p>
 &lt;h4 id="4-检查压缩包内容">4. 检查压缩包内容&lt;/h4>
-&lt;p>这里分源码包 + 二进制包两个方面, 源码包更为严格, 挑核心的部分说 (完整的列表可参考官方 &lt;a href="https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist">Wiki&lt;/a>, 比较长)&lt;/p>
-&lt;p>首先我们需要从 apache 官方的 &lt;code>release-candidate&lt;/code> 地址下载包到本地 (地址: &lt;a href="https://dist.apache.org/repos/dist/dev/incubator/hugegraph/">点击跳转&lt;/a>)&lt;/p>
+&lt;p>这里检查准备工作下载的压缩包内容。分源码包 + 二进制包两个方面，源码包更为严格，挑核心的部分说
+(完整的列表可参考官方 &lt;a href="https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist">Wiki&lt;/a>, 比较长)&lt;/p>
 &lt;h5 id="a-源码包">A. 源码包&lt;/h5>
-&lt;p>解压 &lt;code>*hugegraph*src.tar.gz&lt;/code>后, 进行如下检查:&lt;/p>
+&lt;p>解压 &lt;code>*hugegraph*src.tar.gz&lt;/code>后，进行如下检查：&lt;/p>
 &lt;ol>
 &lt;li>文件夹都带有 &lt;code>incubating&lt;/code>, 且不存在&lt;strong>空的&lt;/strong>文件/文件夹&lt;/li>
 &lt;li>存在 &lt;code>LICENSE&lt;/code> + &lt;code>NOTICE&lt;/code> + 存在 &lt;code>DISCLAIMER&lt;/code> 文件并且内容正常&lt;/li>
@@ -242,14 +250,15 @@
 &lt;li>检查每个父 / 子模块的 &lt;code>pom.xml&lt;/code> 版本号是否一致 (且符合期望)&lt;/li>
 &lt;li>最后，确保源码可以正常 / 正确编译 (然后看看测试和规范)&lt;/li>
 &lt;/ol>
-&lt;p>PMC 同学请特别注意认真检查 &lt;code>LICENSE&lt;/code> + &lt;code>NOTICE&lt;/code> 文件, 确保文件严格遵循了 ASF 的发版要求, 大部分的发版问题都与之相关&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 请优先使用/切换到 java 11 版本进行后序的编译和运行操作&lt;/span>
+&lt;p>PMC 同学请特别注意认真检查 &lt;code>LICENSE&lt;/code> + &lt;code>NOTICE&lt;/code> 文件，确保文件严格遵循了 ASF 的发版要求，
+大部分的发版问题都与之相关&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 请优先使用/切换到 `java 11` 版本进行后序的编译和运行操作 (注:`Computer` 仅支持 `java &amp;gt;= 11`) &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># java --version&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 尝试在 Unix 环境下编译测试是否正常&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn clean package -Dmaven.test.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> -Dcheckstyle.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 尝试在 Unix 环境下编译测试是否正常 (stage 表示从 stage 仓库拉取依赖)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn clean package -P stage -Dmaven.test.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> -Dcheckstyle.skip&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="b-二进制包">B. 二进制包&lt;/h5>
-&lt;p>解压 &lt;code>xxx-hugegraph.tar.gz&lt;/code>后, 进行如下检查:&lt;/p>
+&lt;p>解压 &lt;code>xxx-hugegraph.tar.gz&lt;/code>后，进行如下检查：&lt;/p>
 &lt;ol>
 &lt;li>文件夹都带有 &lt;code>incubating&lt;/code>&lt;/li>
 &lt;li>存在 &lt;code>LICENSE&lt;/code> + &lt;code>NOTICE&lt;/code> 文件并且内容正常&lt;/li>
@@ -259,51 +268,67 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin/start-hugegraph.sh
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># hugegraph-loader&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin/hugegraph-loader.sh -f path -g graph -s schema
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin/hugegraph-loader.sh -g hugegraph -f example/file/struct.json -s example/file/schema.groovy
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># hugegraph-hubble&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin/start-hubble.sh
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># hugegraph-computer&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin/start-computer.sh -d &lt;span style="color:#204a87">local&lt;/span> -r master
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>更多参考官网: https://hugegraph.apache.org/cn/docs/quickstart
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>注:&lt;/strong> 如果二进制包里面引入了第三方依赖, 则需要更新 LICENSE, 加入第三方依赖的 LICENSE; 若第三方依赖 LICENSE 是 Apache 2.0, 且对应的项目中包含了 NOTICE, 则还需要更新我们的 NOTICE 文件&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>注:&lt;/strong> 如果二进制包里面引入了第三方依赖, 则需要更新 LICENSE, 加入第三方依赖的 LICENSE; 若第三方依赖
+LICENSE 是 Apache 2.0, 且对应的项目中包含了 NOTICE, 则还需要更新我们的 NOTICE 文件&lt;/p>
 &lt;h4 id="5-检查官网以及-github-等页面">5. 检查官网以及 github 等页面&lt;/h4>
 &lt;ol>
-&lt;li>确保官网至少满足 &lt;a href="https://whimsy.apache.org/pods/project/hugegraph">apache website check&lt;/a>, 以及没有死链等&lt;/li>
-&lt;li>更新&lt;strong>下载链接&lt;/strong>存在, 以及版本更新说明页面更新&lt;/li>
+&lt;li>确保官网至少满足 &lt;a href="https://whimsy.apache.org/pods/project/hugegraph">apache website check&lt;/a>,
+以及没有死链等&lt;/li>
+&lt;li>更新&lt;strong>下载链接&lt;/strong>存在，以及版本更新说明页面更新&lt;/li>
 &lt;li>&amp;hellip;&lt;/li>
 &lt;/ol>
 &lt;h2 id="邮件模板">邮件模板&lt;/h2>
-&lt;p>检查完成后, 你应该按不同角色回复邮件: (普通开发者 &amp;amp; PMC 成员)&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>+1 (non-binding)
+&lt;p>检查完成后，你应该按不同角色回复邮件：(普通开发者 &amp;amp; PMC 成员)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>[] +1 approve
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[] +0 no opinion
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[] -1 disapprove with the reason
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>+1 (non-binding)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>I checked:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">1.&lt;/span> All download links are valid
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">2.&lt;/span> Checksum and signature are OK
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">3.&lt;/span> LICENSE and NOTICE are exist
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">4.&lt;/span> Build successfully on macOS(Big Sur)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">5.&lt;/span> ....
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>特别注意 PMC 成员必须使用 &lt;code>binding&lt;/code> 标记回复邮件, 这对于统计有效投票很重要;&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">1.&lt;/span> Download link/tag in mail are valid
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">2.&lt;/span> Checksum and GPG signatures are OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">3.&lt;/span> LICENSE &lt;span style="color:#a40000">&amp;amp;&lt;/span> NOTICE &lt;span style="color:#a40000">&amp;amp;&lt;/span> DISCLAIMER are exist
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">4.&lt;/span> Build successfully on XX OS version XXX
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">5.&lt;/span> No unexpected binary files
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">6.&lt;/span> Date is right in the NOTICE file
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">7.&lt;/span> Compile from source is fine under JavaX
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">8.&lt;/span> No empty file &lt;span style="color:#a40000">&amp;amp;&lt;/span> directory found
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">9.&lt;/span> Test running xxx service OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">10.&lt;/span> ....
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>特别注意 PMC 成员必须使用 &lt;code>binding&lt;/code> 标记回复邮件，这对于统计有效投票很重要;&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>+1 (binding)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>I checked:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">1.&lt;/span> All download links are valid
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">2.&lt;/span> Checksum and signature are OK
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">3.&lt;/span> LICENSE and NOTICE are exist
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">4.&lt;/span> Build successfully on macOS(Big Sur)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">5.&lt;/span> ....
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">1.&lt;/span> Download link/tag in mail are valid
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">2.&lt;/span> Checksum and GPG signatures are OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">3.&lt;/span> LICENSE &lt;span style="color:#a40000">&amp;amp;&lt;/span> NOTICE &lt;span style="color:#a40000">&amp;amp;&lt;/span> DISCLAIMER are exist
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">4.&lt;/span> Build successfully on XX OS Version XX
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">5.&lt;/span> No unexpected binary files
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">6.&lt;/span> Date is right in the NOTICE file
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">7.&lt;/span> Compile from source is fine under JavaXX
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">8.&lt;/span> No empty file &lt;span style="color:#a40000">&amp;amp;&lt;/span> directory found
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">9.&lt;/span> Test running XXX service OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">10.&lt;/span> ....
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: 在 IDEA 中配置 Server 开发环境</title><link>/cn/docs/contribution-guidelines/hugegraph-server-idea-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/contribution-guidelines/hugegraph-server-idea-setup/</guid><description>
 &lt;blockquote>
 &lt;p>注意：下述配置仅供参考，基于&lt;a href="https://github.com/apache/incubator-hugegraph/commit/a946ad1de4e8f922251a5241ffc957c33379677f">这个版本&lt;/a>，在 Linux 和 macOS 平台下进行了测试。&lt;/p>
 &lt;/blockquote>
 &lt;h3 id="背景">背景&lt;/h3>
-&lt;p>在 &lt;a href="/docs/quickstart/hugegraph-server/">Quick Start&lt;/a> 部分已经介绍了使用&lt;strong>脚本&lt;/strong>启停 HugeGraphServer 的流程。下面以 Linux 平台为例，介绍使用 &lt;strong>IntelliJ IDEA&lt;/strong> 运行与调试 HugeGraph-Server 的流程。&lt;/p>
+&lt;p>在 &lt;a href="/docs/quickstart/hugegraph-server/">Quick Start&lt;/a> 部分已经介绍了使用&lt;strong>脚本&lt;/strong>启停 HugeGraph-Server 的流程。下面以 Linux 平台为例，
+介绍使用 &lt;strong>IntelliJ IDEA&lt;/strong> 运行与调试 HugeGraph-Server 的流程。&lt;/p>
 &lt;p>本地启动的核心与&lt;strong>脚本启动&lt;/strong>是一样的：&lt;/p>
 &lt;ol>
 &lt;li>初始化数据库后端，执行 &lt;code>InitStore&lt;/code> 类初始化图&lt;/li>
-&lt;li>启动 HugeGraphServer，执行 &lt;code>HugeGraphServer&lt;/code> 类加载初始化的图信息启动&lt;/li>
+&lt;li>启动 HugeGraph-Server，执行 &lt;code>HugeGraphServer&lt;/code> 类加载初始化的图信息启动&lt;/li>
 &lt;/ol>
-&lt;p>在执行下述流程之前，请确保已经克隆了 HugeGraph 的源代码，并且已经配置了 JDK 11 等开发环境。&lt;/p>
+&lt;p>在执行下述流程之前，请确保已经克隆了 HugeGraph 的源代码，并且已经配置了 Java 11 环境 &amp;amp; 可以参考这个
+&lt;a href="https://github.com/apache/incubator-hugegraph/wiki/The-style-config-for-HugeGraph-in-IDEA">配置文档&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/apache/hugegraph.git
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="步骤">步骤&lt;/h3>
 &lt;h4 id="1-配置文件拷贝">1. 配置文件拷贝&lt;/h4>
@@ -322,6 +347,12 @@
 &lt;li>将 &lt;code>Main class&lt;/code> 设置为 &lt;code>org.apache.hugegraph.cmd.InitStore&lt;/code>&lt;/li>
 &lt;li>设置运行参数为 &lt;code>conf/rest-server.properties&lt;/code>，这里的路径是相对于工作路径的，需要将工作路径设置为 &lt;code>path-to-your-directory&lt;/code>&lt;/li>
 &lt;/ul>
+&lt;blockquote>
+&lt;p>若在 &lt;strong>Java 11&lt;/strong> 环境下为 HugeGraph-Server 配置了&lt;strong>用户认证&lt;/strong> (authenticator)，需要参考二进制包的脚本&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-server/hugegraph-dist/src/assembly/static/bin/init-store.sh#L52">配置&lt;/a>，添加下述 &lt;strong>VM options&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>--add-exports&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>java.base/jdk.internal.reflect&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>ALL-UNNAMED
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>否则会报错：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">lang&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">reflect&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">InaccessibleObjectException&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Unable&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">make&lt;/span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">static&lt;/span> &lt;span style="color:#204a87;font-weight:bold">synchronized&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">jdk&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">internal&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">reflect&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">Reflection&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">registerFieldsToFilter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">lang&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">Class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span>&lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">lang&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">String&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">[])&lt;/span> &lt;span style="color:#000">accessible&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">module&lt;/span> &lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">base&lt;/span> &lt;span style="color:#000">does&lt;/span> &lt;span style="color:#000">not&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;exports jdk.internal.reflect&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">unnamed&lt;/span> &lt;span style="color:#000">module&lt;/span> &lt;span style="color:#5c35cc;font-weight:bold">@xxx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/blockquote>
 &lt;p>配置完成后运行，如果运行成功，将会输出以下类似运行日志：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">2023&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">06&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">05&lt;/span> &lt;span style="color:#000">00&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000">43&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000">37&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#000">main&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#000">INFO&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#000">o&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">a&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">h&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">u&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">ConfigUtil&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span> &lt;span style="color:#000">Scanning&lt;/span> &lt;span style="color:#000">option&lt;/span> &lt;span style="color:#a40000">&amp;#39;&lt;/span>&lt;span style="color:#000">graphs&lt;/span>&lt;span style="color:#a40000">&amp;#39;&lt;/span> &lt;span style="color:#000">directory&lt;/span> &lt;span style="color:#a40000">&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">./&lt;/span>&lt;span style="color:#000">conf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">graphs&lt;/span>&lt;span style="color:#a40000">&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">2023&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">06&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">05&lt;/span> &lt;span style="color:#000">00&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000">43&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000">37&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#000">main&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#000">INFO&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#000">o&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">a&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">h&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">c&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">InitStore&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span> &lt;span style="color:#000">Init&lt;/span> &lt;span style="color:#000">graph&lt;/span> &lt;span style="color:#000">with&lt;/span> &lt;span style="color:#000">config&lt;/span> &lt;span style="color:#000">file&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">./&lt;/span>&lt;span style="color:#000">conf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">graphs&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">hugegraph&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">properties&lt;/span>
@@ -341,6 +372,12 @@
 &lt;li>将 &lt;code>Main class&lt;/code> 设置为 &lt;code>org.apache.hugegraph.dist.HugeGraphServer&lt;/code>&lt;/li>
 &lt;li>设置运行参数为 &lt;code>conf/gremlin-server.yaml conf/rest-server.properties&lt;/code>，同样地，这里的路径是相对于工作路径的，需要将工作路径设置为 &lt;code>path-to-your-directory&lt;/code>&lt;/li>
 &lt;/ul>
+&lt;blockquote>
+&lt;p>类似的，若在 &lt;strong>Java 11&lt;/strong> 环境下为 HugeGraph-Server 配置了&lt;strong>用户认证&lt;/strong> (authenticator)，同样需要参考二进制包的脚本&lt;a href="https://github.com/apache/incubator-hugegraph/blob/master/hugegraph-server/hugegraph-dist/src/assembly/static/bin/hugegraph-server.sh#L124">配置&lt;/a>，添加下述 &lt;strong>VM options&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>--add-exports&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>java.base/jdk.internal.reflect&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>ALL-UNNAMED --add-modules&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>jdk.unsupported --add-exports&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>java.base/sun.nio.ch&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>ALL-UNNAMED
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>否则会报错：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">lang&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">reflect&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">InaccessibleObjectException&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Unable&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">make&lt;/span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">static&lt;/span> &lt;span style="color:#204a87;font-weight:bold">synchronized&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">jdk&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">internal&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">reflect&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">Reflection&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">registerFieldsToFilter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">lang&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">Class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span>&lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">lang&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">String&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">[])&lt;/span> &lt;span style="color:#000">accessible&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">module&lt;/span> &lt;span style="color:#000">java&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">base&lt;/span> &lt;span style="color:#000">does&lt;/span> &lt;span style="color:#000">not&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;exports jdk.internal.reflect&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">unnamed&lt;/span> &lt;span style="color:#000">module&lt;/span> &lt;span style="color:#5c35cc;font-weight:bold">@xxx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/blockquote>
 &lt;p>配置完成后运行，如果看到以下类似日志，表示 &lt;code>HugeGraphServer&lt;/code> 已经成功启动：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">......&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">2023&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">06&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">05&lt;/span> &lt;span style="color:#000">00&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000">51&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#000">56&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#000">gremlin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">server&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">boss&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#000">INFO&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#000">o&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">a&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">t&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">g&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">s&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">GremlinServer&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span> &lt;span style="color:#000">Gremlin&lt;/span> &lt;span style="color:#000">Server&lt;/span> &lt;span style="color:#000">configured&lt;/span> &lt;span style="color:#000">with&lt;/span> &lt;span style="color:#000">worker&lt;/span> &lt;span style="color:#000">thread&lt;/span> &lt;span style="color:#000">pool&lt;/span> &lt;span style="color:#000">of&lt;/span> &lt;span style="color:#000">1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">gremlin&lt;/span> &lt;span style="color:#000">pool&lt;/span> &lt;span style="color:#000">of&lt;/span> &lt;span style="color:#000">8&lt;/span> &lt;span style="color:#000">and&lt;/span> &lt;span style="color:#000">boss&lt;/span> &lt;span style="color:#000">thread&lt;/span> &lt;span style="color:#000">pool&lt;/span> &lt;span style="color:#000">of&lt;/span> &lt;span style="color:#000">1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>
@@ -356,8 +393,8 @@
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>curl &lt;span style="color:#4e9a06">&amp;#34;http://localhost:8080/graphs/hugegraph/graph/vertices&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> gunzip
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>此时，可以在调试器中查看详细的变量信息。&lt;/p>
 &lt;h4 id="5-log4j2-日志配置">5. Log4j2 日志配置&lt;/h4>
-&lt;p>默认情况下，运行 &lt;code>InitStore&lt;/code> 和 &lt;code>HugeGraphServer&lt;/code> 时，读取的 Log4j2 配置文件路径为 &lt;code>hugegraph-dist/src/main/resources/log4j2.xml&lt;/code>，而不是 &lt;code>path-to-your-directory/conf/log4j2.xml&lt;/code>，这个配置文件是使用&lt;strong>脚本&lt;/strong>启动 HugeGraphServer 时读取的。&lt;/p>
-&lt;p>为了避免同时维护两份配置文件，可以考虑在 &lt;strong>IntelliJ IDEA&lt;/strong> 运行与调试 HugeGraphServer 时，修改读取的 Log4j2 配置文件路径：&lt;/p>
+&lt;p>默认情况下，运行 &lt;code>InitStore&lt;/code> 和 &lt;code>HugeGraphServer&lt;/code> 时，读取的 Log4j2 配置文件路径为 &lt;code>hugegraph-dist/src/main/resources/log4j2.xml&lt;/code>，而不是 &lt;code>path-to-your-directory/conf/log4j2.xml&lt;/code>，这个配置文件是使用&lt;strong>脚本&lt;/strong>启动 HugeGraph-Server 时读取的。&lt;/p>
+&lt;p>为了避免同时维护两份配置文件，可以考虑在 &lt;strong>IntelliJ IDEA&lt;/strong> 运行与调试 HugeGraph-Server 时，修改读取的 Log4j2 配置文件路径：&lt;/p>
 &lt;ol>
 &lt;li>打开之前创建的 &lt;code>Application&lt;/code> 配置&lt;/li>
 &lt;li>点击 &lt;code>Modify options&lt;/code> - &lt;code>Add VM options&lt;/code>&lt;/li>
@@ -365,12 +402,18 @@
 &lt;/ol>
 &lt;h3 id="可能遇到的问题">可能遇到的问题&lt;/h3>
 &lt;h4 id="1-java-package-sunmisc-does-not-exist">1. java: package sun.misc does not exist&lt;/h4>
-&lt;p>原因可能是在使用 Java 11 编译时触发了交叉编译，导致项目中使用的 &lt;code>sun.misc.Unsafe&lt;/code> 找不到符号。有两种解决方案可供选择：&lt;/p>
+&lt;p>原因可能是在使用 &lt;strong>Java 11&lt;/strong> 编译时触发了交叉编译，导致项目中使用的 &lt;code>sun.misc.Unsafe&lt;/code> 找不到符号。有两种解决方案可供选择：&lt;/p>
 &lt;ol>
 &lt;li>在 IntelliJ IDEA 的 &lt;code>Preferences/Settings&lt;/code> 中找到 &lt;code>Java Compiler&lt;/code> 面板，然后关闭 &lt;code>--release&lt;/code> 选项 (推荐)&lt;/li>
-&lt;li>或者将项目的 SDK 版本设置为 8&lt;/li>
+&lt;li>或者将项目的 SDK 版本设置为 8 (Deprecated soon)&lt;/li>
 &lt;/ol>
-&lt;h4 id="2-log4j2-日志无法打印-l-等位置信息">2. Log4j2 日志无法打印 %l 等位置信息&lt;/h4>
+&lt;h4 id="2-java-storeraftrpcraftrequests-does-not-exist-rpc-generated-files">2. java: *.store.raft.rpc.RaftRequests does not exist (RPC Generated Files)&lt;/h4>
+&lt;p>原因是源代码没有包含 &lt;code>RPC-generated&lt;/code> 文件。可以尝试两种方法来解决：&lt;/p>
+&lt;ol>
+&lt;li>[命令] 在根目录下运行 &lt;code>mvn clean compile -DskipTests&lt;/code> (&lt;strong>推荐&lt;/strong>)&lt;/li>
+&lt;li>[UI] 在 IDEA 中，右键点击 &lt;code>hugegraph&lt;/code> 模块，选择 &lt;code>Manve -&amp;gt; Generate Sources and Update Folders&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h4 id="3-log4j2-日志无法打印-l-等位置信息">3. Log4j2 日志无法打印 %l 等位置信息&lt;/h4>
 &lt;p>这是因为 Log4j2 中使用了 asynchronous loggers，可以参考&lt;a href="https://logging.apache.org/log4j/2.x/manual/layouts.html#LocationInformation">官方文档&lt;/a>进行配置&lt;/p>
 &lt;hr>
 &lt;h5 id="参考">参考&lt;/h5>
@@ -379,4 +422,340 @@
 &lt;li>&lt;a href="https://gist.github.com/imbajin/1661450f000cd62a67e46d4f1abfe82c">hugegraph-server 本地调试文档 (Win/Unix)&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://youtrack.jetbrains.com/issue/IDEA-180033">&amp;ldquo;package sun.misc does not exist&amp;rdquo; compilation error&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://youtrack.jetbrains.com/issue/IDEA-201168">Cannot compile: java: package sun.misc does not exist&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph/wiki/The-style-config-for-HugeGraph-in-IDEA">The code-style config for HugeGraph in IDEA&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Apache HugeGraph Committer 指南</title><link>/cn/docs/contribution-guidelines/committer-guidelines/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/contribution-guidelines/committer-guidelines/</guid><description>
+&lt;blockquote>
+&lt;p>本文档概述了 Apache Committer 推选要求以及流程，对应的 ASF 官方文档可见：https://community.apache.org/newcommitter.html&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="候选人要求">候选人要求&lt;/h1>
+&lt;ol>
+&lt;li>候选人应遵守 &lt;a href="https://www.apache.org/foundation/policies/conduct.html">Apache Code of Conduct&lt;/a>&lt;/li>
+&lt;li>PMC 成员将通过搜索&lt;a href="https://lists.apache.org/list?dev@hugegraph.apache.org">邮件列表&lt;/a>、&lt;a href="https://github.com/apache/hugegraph/issues">issues&lt;/a>、&lt;a href="https://github.com/apache/incubator-hugegraph/pulls">PRs&lt;/a>、&lt;a href="https://hugegraph.apache.org/docs">官网文档&lt;/a>等方式，了解候选人如何与他人互动，以及他们所做的贡献&lt;/li>
+&lt;li>以下是在评估候选人是否适合成为 Committer 时需要考虑的一些要点：
+&lt;ol>
+&lt;li>与社区成员合作的能力&lt;/li>
+&lt;li>担任导师的能力&lt;/li>
+&lt;li>社区参与度&lt;/li>
+&lt;li>贡献程度&lt;/li>
+&lt;li>个人技能/能力&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h1 id="推选详细流程">推选详细流程&lt;/h1>
+&lt;p>&lt;strong>讨论 (DISCUSS) → 投票 (VOTE) → 邀请 (INVITE) → 公告 (ANNOUNCE)&lt;/strong>&lt;/p>
+&lt;h2 id="1-发起社区邮件讨论-discuss">1. 发起社区邮件讨论 (DISCUSS)&lt;/h2>
+&lt;p>任何 HugeGraph 的 (P)PMC 成员都可以发起投票讨论，在发现社区贡献者任何有价值的贡献并取得候选人本人同意后，可以在 &lt;a href="mailto:private@hugegraph.apache.org">private@hugegraph.apache.org&lt;/a> 发起讨论。
+讨论邮件里提议者要把候选人的贡献说清楚，并最好给出确认贡献的 URL 等信息，便于大家讨论分析。&lt;/p>
+&lt;p>下面是 HugeGraph 对应的邮件模板：(仅供参考)&lt;/p>
+&lt;blockquote>
+&lt;p>Note: 后续将使用 xxx 指代候选人名，一般 &lt;code>xxx&lt;/code> 为一个容易读的名字 (例如 &lt;code>Simon Jay&lt;/code>)&lt;/p>
+&lt;p>&lt;code>ASF-INFRA&lt;/code> 建议&lt;strong>避免&lt;/strong>使用不易读的 &lt;code>ID&lt;/code> 直接作为邮件&lt;strong>人名代指&lt;/strong> (例如&lt;strong>避免&lt;/strong> &lt;code>simon321&lt;/code> 或 &lt;code>wh0isSim0n&lt;/code> 😄)&lt;/p>
+&lt;p>另发送邮件最好选择 &lt;strong>&amp;ldquo;纯文本&amp;rdquo;&lt;/strong> 模式，否则排版在 ASF Mail UI 中可能会乱&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>To: private@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: [DISCUSS] XXX as a HugeGraph Committer Candidate
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hi all:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>I am pleased to nominate xxx for the role of HugeGraph Committer based on his/her contributions over the past few months.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ Candidate&amp;#39;s Contribution Summary ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Here are the relevant PRs (issues) he/she has participated in:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">**Core Features:**&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">-&lt;/span> Feature 1: [ Reference Links ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">-&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">**Fix/Chore/Release:**&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">**Doc:**&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ Candidate&amp;#39;s Current Notable Contributions ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>His/Her contributions bring the following benefits to the community, helping us in the following ways:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ Candidate&amp;#39;s Contributions and Benefits to the Community ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>In view of the above contributions, I elect xxx as Committer of the HugeGraph project.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ Reference Links ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">1.&lt;/span> PR1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">2.&lt;/span> PR2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">3.&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Welcome everyone to share opinions~
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Thanks!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>对于讨论邮件中贡献链接，可以使用 &lt;a href="https://github.com/search">GitHub Search&lt;/a> 的统计功能，按需输入如下对应关键词查询即可，可以在此基础上添加新的 repo 如 &lt;code>repo:apache/incubator-hugegraph-computer&lt;/code>，特别注意调整&lt;strong>时间范围&lt;/strong> (下面是一个模板参考，请自行调整参数):&lt;/p>
+&lt;ul>
+&lt;li>PR 提交次数
+&lt;ul>
+&lt;li>&lt;code>is:pr author:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>代码提交/修改行数
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c">https://github.com/apache/incubator-hugegraph/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph-doc/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c">https://github.com/apache/incubator-hugegraph-doc/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>PR 提交关联 Issue 次数
+&lt;ul>
+&lt;li>&lt;code>linked:issue involves:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>PR Review 个数
+&lt;ul>
+&lt;li>&lt;code>type:pr reviewed-by:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>PR Review 行数&lt;/li>
+&lt;li>合并次数
+&lt;ul>
+&lt;li>&lt;code>type:pr author:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>有效合并行数
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c">https://github.com/apache/incubator-hugegraph/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph-doc/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c">https://github.com/apache/incubator-hugegraph-doc/graphs/contributors?from=2023-06-01&amp;amp;to=2023-12-25&amp;amp;type=c&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Issue 提交数
+&lt;ul>
+&lt;li>&lt;code>type:issue author:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Issue 修复数
+&lt;ul>
+&lt;li>在 Issue 提交数的基础上选取状态为 closed 的 Issues&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Issue 参与数
+&lt;ul>
+&lt;li>&lt;code>type:issue involves:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>评论 Issue 数
+&lt;ul>
+&lt;li>&lt;code>type:issue commenter:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>评论 PR 数
+&lt;ul>
+&lt;li>&lt;code>type:pr commenter:xxx repo:apache/incubator-hugegraph repo:apache/incubator-hugegraph-doc created:&amp;gt;2023-06-01 updated:&amp;lt;2023-12-25&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Mailing Lists 的参与则可使用 &lt;a href="https://lists.apache.org/list?dev@hugegraph.apache.org:lte=10M:xxx">https://lists.apache.org/list?dev@hugegraph.apache.org:lte=10M:xxx&lt;/a> 查询。&lt;/p>
+&lt;h2 id="2-发起社区邮件投票-vote">2. 发起社区邮件投票 (VOTE)&lt;/h2>
+&lt;p>如果讨论邮件在规定时间内没有收到分歧信息，投票发起者需要在 &lt;a href="mailto:private@hugegraph.apache.org">private@hugegraph.apache.org&lt;/a> 发起对 Committer 的选举投票。&lt;/p>
+&lt;p>下面是对应的邮件模板：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>To: private@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: [VOTE] xxx as a HugeGraph Committer
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hi all:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Through the discussion of last week:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ Discussion Mailing List Link ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>We have discussed and listed what xxx participated in the HugeGraph community.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>I believe making him/her a Committer will enhance the work for HugeGraph.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>So, I am happy to call VOTE to accept xxx as a HugeGraph Committer.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Voting will continue for at least 72 hours or until the required number of votes is reached.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Please vote accordingly:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ ] +1 approve
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ ] +0 no opinion
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ ] -1 disapprove with the reason
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Thanks!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后 (P)PMC 成员回复 +1 或 -1 的邮件回复表达意见，一般来说至少需要 ≥3 票 +1 才能结束投票。&lt;/p>
+&lt;h2 id="宣布投票结果-result">宣布投票结果 (RESULT)&lt;/h2>
+&lt;p>投票邮件结束后，投票发起者需要邮件里提醒投票结束。同时，投票发起者需要发起邮件宣布投票结果，发送至 &lt;a href="mailto:private@hugegraph.apache.org">private@hugegraph.apache.org&lt;/a>，邮件模板可参考：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>To: private@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: [RESULTS][VOTE] xxx as a HugeGraph Committer
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hi all: The vote for &amp;#34;xxx&amp;#34; as an HugeGraph Committer has PASSED and closed now.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The result is as follows: X PMC +1 Votes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- A (PMC ID)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- B
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- C...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Vote thread:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>put vote thread link here
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Then I&amp;#39;m going to invite xxx to join us soon. Thanks for everyone&amp;#39;s support!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="向候选人发起邮件邀请-invite">向候选人发起邮件邀请 (INVITE)&lt;/h2>
+&lt;p>宣布投票结果邮件发出后，投票发起人要给候选人发送邀请邮件。邀请邮件主送候选人，抄送 &lt;a href="mailto:private@hugegraph.apache.org">private@hugegraph.apache.org&lt;/a>，被邀请的候选人必须通过指定的邮箱地址回复接受或者拒绝该邀请。&lt;/p>
+&lt;p>下面是对应可参考的邮件模板：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>To: [ Candidate&amp;#39;s Email ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cc: private@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: Invitation to become HugeGraph committer: xxx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hello xxx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The HugeGraph Project Management Committee (PPMC)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hereby offers you committer privileges to the project.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>These privileges are offered on the understanding that you&amp;#39;ll use them
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>reasonably and with common sense. We like to work on trust
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rather than unnecessary constraints.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Being a committer enables you to more easily make
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>changes without needing to go through the patch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>submission process.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Being a committer does not require you to
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>participate any more than you already do. It does
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tend to make one even more committed. You will
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>probably find that you spend more time here.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Of course, you can decline and instead remain as a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>contributor, participating as you do now.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>A. This personal invitation is a chance for you to
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>accept or decline in private. Either way, please
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>let us know in reply to the private@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>address only.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>B. If you accept, the next step is to register an iCLA:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 1. Details of the iCLA and the forms are found
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> through this link: https://www.apache.org/licenses/#clas
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 2. Instructions for its completion and return to
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the Secretary of the ASF are found at
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> https://www.apache.org/licenses/#submitting
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 3. When you transmit the completed iCLA, request
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> to notify the Apache HugeGraph project and choose a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> unique Apache ID. Look to see if your preferred
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ID is already taken at
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> https://people.apache.org/committer-index.html
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> This will allow the Secretary to notify the PMC
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> when your iCLA has been recorded.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>When recording of your iCLA is noted, you will
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>receive a follow-up message with the next steps for
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>establishing you as a committer.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>With the expectation of your acceptance, welcome!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The Apache HugeGraph(incubating) PPMC
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="候选人接受邀请-accept">候选人接受邀请 (ACCEPT)&lt;/h2>
+&lt;p>候选人应回复上述邮件 (选择 &lt;strong>reply all&lt;/strong>)，表明接受邀请，邮件模板可参考：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>To: [ Sender&amp;#39;s Email ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cc: private@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: Re: Invitation to become HugeGraph committer: xxx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hello Apache HugeGraph(incubating) PPMC,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>I accept the invitation.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Thanks to the Apache HugeGraph Community for recognizing my work, I
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>will continue to actively participate in the work of the Apache
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>HugeGraph(incubating).
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Next, I will follow the instructions to complete the next steps:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Signing and submitting iCLA and registering Apache ID.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>xxx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>当然，候选人也可以选择拒绝邀请，这里就没有模板了:)&lt;/p>
+&lt;p>一旦邀请被接受，候选人需要完成以下事项：&lt;/p>
+&lt;ul>
+&lt;li>订阅 &lt;a href="mailto:dev@hugegraph.apache.org">dev@hugegraph.apache.org&lt;/a>，具体步骤/过滤等配置请参考&lt;a href="https://hugegraph.apache.org/docs/contribution-guidelines/subscribe/">文档&lt;/a>&lt;/li>
+&lt;li>签署 &lt;a href="https://www.apache.org/licenses/icla.pdf">ICLA&lt;/a>，具体步骤见下↓&lt;/li>
+&lt;/ul>
+&lt;h3 id="icla-签署流程">ICLA 签署流程&lt;/h3>
+&lt;ol>
+&lt;li>下载 &lt;a href="https://www.apache.org/licenses/icla.pdf">ICLA&lt;/a>&lt;/li>
+&lt;li>打开 PDF 并填写相关内容，均需要全英文填写，建议使用 PDF 工具编辑并署名
+&lt;ol>
+&lt;li>&lt;strong>Full name&lt;/strong>: 名字在前，姓氏在后&lt;/li>
+&lt;li>&lt;strong>Public name&lt;/strong>: 可以不填，默认和 &lt;code>Full name&lt;/code> 相同&lt;/li>
+&lt;li>勾选 check this box only if you enter names with your family name first&lt;/li>
+&lt;li>&lt;strong>Postal Address&lt;/strong>: 英文地址，从小地方到大地方的顺序来写，需详细到门牌号&lt;/li>
+&lt;li>&lt;strong>Country:&lt;/strong> 所在国家英文&lt;/li>
+&lt;li>&lt;strong>E-mail&lt;/strong>: 邮箱地址，建议与上述邮件中使用的邮箱相同&lt;/li>
+&lt;li>&lt;strong>(optional) preferred Apache id(s)&lt;/strong>: 选择一个 &lt;a href="http://people.apache.org/committer-index.html">Apache committer&lt;/a> 页面不存在的 &lt;strong>SVN ID&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>(optional) notify project&lt;/strong>：Apache HugeGraph(incubating)&lt;/li>
+&lt;li>&lt;strong>签名：务必使用 PDF 工具手写&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Date:&lt;/strong> 格式 xxxx-xx-xx&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>签署完之后将 &lt;code>icla.pdf&lt;/code> 重命名为 &lt;code>姓名拼音-icla.pdf&lt;/code>&lt;/li>
+&lt;li>发送下述邮件，并附件引用 &lt;code>姓名拼音-icla.pdf&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>To: secretary@apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: ICLA Information
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hello everyone:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>I have accepted the Apache HugeGraph(incubating) PPMC invitation to
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>become a HugeGraph committer, the attachment is my ICLA information.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(Optional) My GitHub account is https://github.com/xxx. Thanks!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>xxx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>更多注意事项可参考 &lt;a href="https://github.com/apache/hugegraph/issues/1732">https://github.com/apache/hugegraph/issues/1732&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>PMC 成员将等待 &lt;code>Apache secretary&lt;/code> 团队确认 &lt;code>ICLA&lt;/code> 备案，候选人和 PMC 成员将收到以下电子邮件：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Dear xxx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>This message acknowledges receipt of your ICLA, which has been filed in the Apache Software Foundation records.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Your account (with id xxx) has been requested for you and you should receive email with next steps
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>within the next few days (this process can take up to a week).
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Please refer to https://www.apache.org/foundation/how-it-works.html#developers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>for more information about roles at Apache.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="设置-apache-账号和开发环境-config">设置 Apache 账号和开发环境 (CONFIG)&lt;/h3>
+&lt;p>备案完成后，候选人将收到来自 &lt;a href="mailto:root@apache.org">root@apache.org&lt;/a> 主题为 &lt;code>Welcome to the Apache Software Foundation&lt;/code> 的邮件，此时需按照邮件中的步骤设置 Apache 账号和开发环境：&lt;/p>
+&lt;ol>
+&lt;li>重置密码 &lt;a href="https://id.apache.org/reset/enter">https://id.apache.org/reset/enter&lt;/a>&lt;/li>
+&lt;li>配置个人信息 &lt;a href="https://whimsy.apache.org/roster/committer/xxx">https://whimsy.apache.org/roster/committer/xxx&lt;/a>&lt;/li>
+&lt;li>关联 GitHub 账号 &lt;a href="https://gitbox.apache.org/boxer">https://gitbox.apache.org/boxer&lt;/a>
+&lt;ol>
+&lt;li>这一步需要配置 GitHub 双重身份验证 (2FA)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>&lt;strong>负责提名的 PMC 成员需通过 &lt;a href="https://whimsy.apache.org/roster/ppmc/hugegraph">Roster&lt;/a> 页面，将新的 Committer 添加到官方提交者列表中&lt;/strong> (&lt;strong>重要&lt;/strong>, 否则仓库权限不生效)
+&lt;ol>
+&lt;li>在这一步后，候选人即新的 Committer 才拥有对 GitHub HugeGraph 仓库的写权限&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>(可选) 新的 Committer 可以使用 Apache 账号&lt;a href="https://www.jetbrains.com/shop/eform/apache">申请&lt;/a>免费使用 Jetbrains 的全系列产品&lt;/li>
+&lt;/ol>
+&lt;h2 id="发布公告邮件-announce">发布公告邮件 (ANNOUNCE)&lt;/h2>
+&lt;p>当候选人完成上述步骤后，候选人将正式成为 HugeGraph 的 Committer，此时需要向 &lt;a href="mailto:dev@hugegraph.apache.org">dev@hugegraph.apache.org&lt;/a> 发送公告邮件，邮件模板可参考：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>To: dev@hugegraph.apache.org
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Subject: [ANNOUNCE] New Committer: xxx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Hi everyone, The PPMC for Apache HugeGraph(incubating) has invited xxx to
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>become a Committer and we are pleased to announce that he/she has accepted.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>xxx is being active in the HugeGraph community &amp;amp; dedicated to ... modules,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>and we are glad to see his/her more interactions with the community in the future.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(Optional) His/Her GitHub account is https://github.com/xxx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Welcome xxx, and please enjoy your community journey~
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Thanks!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The Apache HugeGraph PPMC
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="参考">参考&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a href="https://community.apache.org/newcommitter.html">https://community.apache.org/newcommitter.html&lt;/a> (ASF 官方文档)&lt;/li>
+&lt;li>&lt;a href="https://infra.apache.org/new-committers-guide.html">https://infra.apache.org/new-committers-guide.html&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.apache.org/dev/pmc.html#newcommitter">https://www.apache.org/dev/pmc.html#newcommitter&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://linkis.apache.org/zh-CN/community/how-to-vote-a-committer-pmc">https://linkis.apache.org/zh-CN/community/how-to-vote-a-committer-pmc&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.apache.org/licenses/contributor-agreements.html#submitting">https://www.apache.org/licenses/contributor-agreements.html#submitting&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.apache.org/licenses/cla-faq.html#printer">https://www.apache.org/licenses/cla-faq.html#printer&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://linkis.apache.org/zh-CN/community/how-to-sign-apache-icla">https://linkis.apache.org/zh-CN/community/how-to-sign-apache-icla&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/hugegraph/issues/1732">https://github.com/apache/hugegraph/issues/1732&lt;/a> (HugeGraph ICLA related issue)&lt;/li>
 &lt;/ol></description></item></channel></rss>
