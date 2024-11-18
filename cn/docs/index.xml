@@ -1804,19 +1804,63 @@ HugeGraph 支持多用户并行操作，用户可输入 Gremlin 查询语句，�
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span># bind url
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># could use &amp;#39;0.0.0.0&amp;#39; or specified (real)IP to expose external network access
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>restserver.url=http://127.0.0.1:8080
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#restserver.enable_graphspaces_filter=false
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># gremlin server url, need to be consistent with host and port in gremlin-server.yaml
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#gremlinserver.url=http://127.0.0.1:8182
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># graphs list with pair NAME:CONF_PATH
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>graphs=[hugegraph:conf/hugegraph.properties]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>graphs=./conf/graphs
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># authentication
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># The maximum thread ratio for batch writing, only take effect if the batch.max_write_threads is 0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>batch.max_write_ratio=80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>batch.max_write_threads=0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># configuration of arthas
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>arthas.telnet_port=8562
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>arthas.http_port=8561
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>arthas.ip=127.0.0.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>arthas.disabled_commands=jad
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># authentication configs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># choose &amp;#39;org.apache.hugegraph.auth.StandardAuthenticator&amp;#39; or
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># &amp;#39;org.apache.hugegraph.auth.ConfigAuthenticator&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.authenticator=
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># for StandardAuthenticator mode
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.graph_store=hugegraph
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># auth client config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.remote_url=127.0.0.1:8899,127.0.0.1:8898,127.0.0.1:8897
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># for ConfigAuthenticator mode
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.admin_token=
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#auth.user_tokens=[]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># TODO: Deprecated &amp;amp; removed later (useless from version 1.5.0)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># rpc server configs for multi graph-servers or raft-servers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.server_host=127.0.0.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.server_port=8091
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.server_timeout=30
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># rpc client configs (like enable to keep cache consistency)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.remote_url=127.0.0.1:8091,127.0.0.1:8092,127.0.0.1:8093
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.client_connect_timeout=20
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.client_reconnect_period=10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.client_read_timeout=40
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.client_retries=3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#rpc.client_load_balancer=consistentHash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># raft group initial peers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#raft.group_peers=127.0.0.1:8091,127.0.0.1:8092,127.0.0.1:8093
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># lightweight load balancing (beta)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>server.id=server-1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>server.role=master
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># slow query log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log.slow_query_threshold=1000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># jvm(in-heap) memory usage monitor, set 1 to disable it
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>memory_monitor.threshold=0.85
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>memory_monitor.period=2000
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>restserver.url：RestServer 提供服务的 url，根据实际环境修改。如果其他 IP 地址无法访问，可以尝试修改为特定的地址；或修改为 &lt;code>http://0.0.0.0&lt;/code> 来监听来自任何 IP 地址的请求，这种方案较为便捷，但需要留意服务可被访问的网络范围；&lt;/li>
 &lt;li>graphs：RestServer 启动时也需要打开图，该项为 map 结构，key 是图的名字，value 是该图的配置文件路径；&lt;/li>
@@ -5684,6 +5728,16 @@ HugeGraph目前采用EdgeCut的分区方案。&lt;/p>
 &lt;td>false&lt;/td>
 &lt;td>Whether to allow exception trace stack.&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>memory_monitor.threshold&lt;/td>
+&lt;td>0.85&lt;/td>
+&lt;td>The threshold of JVM(in-heap) memory usage monitoring , 1 means disabling this function.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>memory_monitor.period&lt;/td>
+&lt;td>2000&lt;/td>
+&lt;td>The period in ms of JVM(in-heap) memory usage monitoring.&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;h3 id="基本配置项">基本配置项&lt;/h3>
@@ -8423,9 +8477,6 @@ LICENSE 是 Apache 2.0, 且对应的项目中包含了 NOTICE, 则还需要更�
 &lt;/ol>
 &lt;p>&lt;strong>1.3.0&lt;/strong> 是最后兼容 &lt;strong>Java 8&lt;/strong> 的版本，在下一个 1.5.0 版本发布 &amp;ndash; &lt;a href="https://github.com/apache/incubator-hugegraph/issues/2265">PD/Store&lt;/a> 合入主分支时就会全面使用 Java 11 (除&lt;code>client&lt;/code>外).&lt;/p>
 &lt;p>PS: 未来 HugeGraph 组件的版本会朝着 &lt;code>Java 11 -&amp;gt; Java 17 -&amp;gt; Java 21&lt;/code> 演进&lt;/p>
-&lt;blockquote>
-&lt;p>WIP: This doc is under construction, please wait for the final version (BETA)&lt;/p>
-&lt;/blockquote>
 &lt;h3 id="hugegraph">hugegraph&lt;/h3>
 &lt;blockquote>
 &lt;p>在此次版本中我们修复了一些 SEC 相关的问题，如果是线上或者对外服务请升级到最新版本 + 开启权限认证&lt;/p>
@@ -8560,152 +8611,136 @@ LICENSE 是 Apache 2.0, 且对应的项目中包含了 NOTICE, 则还需要更�
 的 AI 能力提供全面支持。&lt;/p>
 &lt;h3 id="2-环境要求">2 环境要求&lt;/h3>
 &lt;ul>
-&lt;li>python 3.8+&lt;/li>
-&lt;li>hugegraph 1.0.0+&lt;/li>
+&lt;li>python 3.9+ (better to use &lt;code>3.10&lt;/code>)&lt;/li>
+&lt;li>hugegraph-server 1.3+&lt;/li>
 &lt;/ul>
 &lt;h3 id="3-准备工作">3 准备工作&lt;/h3>
-&lt;ul>
-&lt;li>启动 HugeGraph 数据库，你可以通过 Docker 来实现。请参考这个&lt;a href="https://hub.docker.com/r/hugegraph/hugegraph">链接&lt;/a>获取指引。&lt;/li>
-&lt;li>启动 gradio 交互式 demo，你可以通过以下命令启动，启动后打开 &lt;a href="http://127.0.0.1:8001">http://127.0.0.1:8001&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># ${PROJECT_ROOT_DIR} 为 hugegraph-ai 的根目录，需要自行配置&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">PYTHONPATH&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">PROJECT_ROOT_DIR&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>/hugegraph-llm/src:&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">PROJECT_ROOT_DIR&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>/hugegraph-python-client/src
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>python3 ./hugegraph-llm/src/hugegraph_llm/utils/gradio_demo.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>配置 HugeGraph 数据库连接信息和 LLM 模型信息，可以通过两种方式配置：
 &lt;ol>
-&lt;li>配置 &lt;code>./hugegraph-llm/src/config/config.ini&lt;/code> 文件&lt;/li>
-&lt;li>在 gradio 中，分别完成 LLM 和 HugeGraph 的配置后，点击 &lt;code>Initialize configs&lt;/code>，将返回初始化后的完整配置文件。如图所示：
-&lt;img src="/docs/images/gradio-config.png" alt="gradio 配置">&lt;/li>
+&lt;li>启动HugeGraph数据库，可以通过 &lt;a href="https://hub.docker.com/r/hugegraph/hugegraph">Docker&lt;/a>/&lt;a href="https://hugegraph.apache.org/docs/download/download/">Binary Package&lt;/a> 运行它。&lt;br>
+请参阅详细&lt;a href="https://hugegraph.apache.org/docs/quickstart/hugegraph-server/#31-use-docker-container-convenient-for-testdev">文档&lt;/a>以获取更多指导&lt;/li>
+&lt;li>克隆项目
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/apache/incubator-hugegraph-ai.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>安装 &lt;a href="../hugegraph-python-client">hugegraph-python-client&lt;/a> 和 &lt;a href="src/hugegraph_llm">hugegraph_llm&lt;/a>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> ./incubator-hugegraph-ai &lt;span style="color:#8f5902;font-style:italic"># better to use virtualenv (source venv/bin/activate) &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pip install ./hugegraph-python-client
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pip install -r ./hugegraph-llm/requirements.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>进入项目目录
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> ./hugegraph-llm/src
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>启动 &lt;strong>Graph RAG&lt;/strong> 的 gradio 交互 demo，可以使用以下命令运行，启动后打开 http://127.0.0.1:8001
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 -m hugegraph_llm.demo.rag_demo.app
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>默认主机为 &lt;code>0.0.0.0&lt;/code> ，端口为 &lt;code>8001&lt;/code> 。您可以通过传递命令行参数 &lt;code>--host&lt;/code> 和 &lt;code>--port&lt;/code> 来更改它们。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 -m hugegraph_llm.demo.rag_demo.app --host 127.0.0.1 --port &lt;span style="color:#0000cf;font-weight:bold">18001&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>启动 &lt;strong>Text2Gremlin&lt;/strong> 的 gradio 交互演示，可以使用以下命令运行，启动后打开 http://127.0.0.1:8002 ，您还可以按上述方式更改默认主机 &lt;code>0.0.0.0&lt;/code> 和端口 &lt;code>8002&lt;/code> 。(🚧ing)
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 -m hugegraph_llm.demo.gremlin_generate_web_demo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>在运行演示程序后，配置文件文件将被删除。&lt;code>.env &lt;/code> 将自动生成在 &lt;code>hugegraph-llm/.env&lt;/code> 路径下。此外，还有一个与 prompt 相关的配置文件 &lt;code>config_prompt.yaml&lt;/code> 。也会在&lt;code>hugegraph-llm/src/hugegraph_llm/resources/demo/config_prompt.yaml&lt;/code>路径下生成。
+您可以在页面上修改内容，触发相应功能后会自动保存到配置文件中。你也可以直接修改文件而无需重启应用程序；只需刷新页面即可加载最新的更改。
+（可选）要重新生成配置文件，您可以将 &lt;code>config.generate&lt;/code> 与 &lt;code>-u&lt;/code> 或 &lt;code>--update&lt;/code> 一起使用。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 -m hugegraph_llm.config.generate --update
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>（&lt;strong>可选&lt;/strong>）您可以使用 &lt;a href="https://hugegraph.apache.org/docs/quickstart/hugegraph-hubble/#21-use-docker-convenient-for-testdev">hugegraph-hubble&lt;/a> 来访问图形数据，可以通过 &lt;a href="https://hub.docker.com/r/hugegraph/hubble">Docker/Docker-Compose&lt;/a> 运行它以获得指导。 （Hubble 是一个图形分析仪表板，包括数据加载/模式管理/图形遍历/显示）。&lt;/li>
+&lt;li>（&lt;strong>可选&lt;/strong>）离线下载 NLTK 停用词
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python ./hugegraph_llm/operators/common_op/nltk_helper.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ol>
-&lt;/li>
-&lt;li>离线下载 NLTK stopwords&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 ./hugegraph_llm/operators/common_op/nltk_helper.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="4-使用说明">4 使用说明&lt;/h3>
-&lt;h4 id="41-通过-llm-在-hugegraph-中构建知识图谱">4.1 通过 LLM 在 HugeGraph 中构建知识图谱&lt;/h4>
-&lt;h5 id="411-通过-gradio-交互式界面构建知识图谱">4.1.1 通过 gradio 交互式界面构建知识图谱&lt;/h5>
+&lt;h2 id="4-示例">4 示例&lt;/h2>
+&lt;h3 id="41-通过-llm-在-hugegraph-中构建知识图谱">4.1 通过 LLM 在 HugeGraph 中构建知识图谱&lt;/h3>
+&lt;h4 id="411-通过-gradio-交互式界面构建知识图谱">4.1.1 通过 gradio 交互式界面构建知识图谱&lt;/h4>
+&lt;p>&lt;strong>参数描述:&lt;/strong>&lt;/p>
 &lt;ul>
-&lt;li>参数说明：
+&lt;li>Docs:
 &lt;ul>
-&lt;li>Text: 输入的文本。&lt;/li>
-&lt;li>Schema：接受以下两种类型的文本：
-&lt;ul>
-&lt;li>用户定义的 JSON 格式模式。&lt;/li>
-&lt;li>指定 HugeGraph 图实例的名称，它将自动提取图的模式。&lt;/li>
+&lt;li>text: 从纯文本建立 rag 索引&lt;/li>
+&lt;li>file: 上传文件：&lt;u>TXT&lt;/u> 或 &lt;u>.docx&lt;/u>（可同时选择多个文件）&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>Disambiguate word sense：是否进行词义消除歧义。&lt;/li>
-&lt;li>Commit to hugegraph：是否将构建的知识图谱提交到 HugeGraph 服务器&lt;/li>
+&lt;li>&lt;a href="https://hugegraph.apache.org/docs/clients/restful-api/schema/">Schema&lt;/a>:（接受&lt;strong>2种类型&lt;/strong>）
+&lt;ul>
+&lt;li>用户定义模式( JSON 格式，遵循&lt;a href="https://github.com/apache/incubator-hugegraph-ai/blob/aff3bbe25fa91c3414947a196131be812c20ef11/hugegraph-llm/src/hugegraph_llm/config/config_data.py#L125">模板&lt;/a>来修改它)&lt;/li>
+&lt;li>指定 HugeGraph 图实例的名称，它将自动从中获取模式(如 &lt;strong>“hugegraph”&lt;/strong>)&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;li>Graph extract head: 用户自定义的图提取提示&lt;/li>
+&lt;li>如果已经存在图数据，你应该点击 &amp;ldquo;&lt;strong>Rebuild vid Index&lt;/strong>&amp;rdquo; 来更新索引&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="/docs/images/gradio-kg.png" alt="gradio 配置">&lt;/p>
+&lt;p>&lt;img src="/docs/images/gradio-kg.png" alt="gradio-config">&lt;/p>
 &lt;h5 id="412-通过代码构建知识图谱">4.1.2 通过代码构建知识图谱&lt;/h5>
-&lt;ul>
-&lt;li>完整代码&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">hugegraph_llm.llms.init_llm&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">LLMs&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">hugegraph_llm.operators.kg_construction_task&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">KgBuilder&lt;/span>
+&lt;p>&lt;code>KgBuilder&lt;/code> 类用于构建知识图谱。下面是使用过程：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>初始化&lt;/strong>： &lt;code>KgBuilder&lt;/code> 类使用语言模型的实例进行初始化。这可以从 &lt;code>LLMs&lt;/code> 类中获得。
+初始化 &lt;code>LLMs&lt;/code>实例，获取 &lt;code>LLM&lt;/code>，然后创建一个任务实例 &lt;code>KgBuilder&lt;/code> 用于图的构建。&lt;code>KgBuilder&lt;/code> 定义了多个运算符，用户可以根据需要自由组合它们。（提示：&lt;code>print_result()&lt;/code> 可以在控制台中打印出每一步的结果，而不会影响整个执行逻辑）
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">hugegraph_llm.models.llms.init_llm&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">LLMs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">hugegraph_llm.operators.kg_construction_task&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">KgBuilder&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">llm&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">LLMs&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">get_llm&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">KgBuilder&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">llm&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">TEXT&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">builder&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">KgBuilder&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">LLMs&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">get_llm&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">builder&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_hugegraph&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test_graph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_triples&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">TEXT&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">disambiguate_word_sense&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_hugegraph&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;talent_graph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">chunk_split&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">TEXT&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">extract_type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;property_graph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">commit_to_hugegraph&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">run&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>时序图
-&lt;img src="/docs/images/kg-uml.png" alt="gradio 配置">&lt;/li>
-&lt;/ul>
-&lt;ol>
-&lt;li>初始化：初始化 LLMs 实例，获取 LLM，然后创建图谱构建的任务实例 &lt;code>KgBuilder&lt;/code>，KgBuilder 中定义了多个 operator，用户可以根据需求自由组合达到目的。（tip: &lt;code>print_result()&lt;/code> 可以在控制台打印每一步输出的结果，不影响整体执行逻辑）&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">llm&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">LLMs&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">get_llm&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">KgBuilder&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">llm&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>导入 Schema：使用 &lt;code>import_schema&lt;/code> 方法导入，支持三种模式：
-&lt;ul>
-&lt;li>从 HugeGraph 实例导入，指定 HugeGraph 图实例的名称，它将自动提取图的模式。&lt;/li>
-&lt;li>从用户定义的模式导入，接受用户定义的 JSON 格式模式。&lt;/li>
-&lt;li>从提取结果导入（即将发布）&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;img src="/docs/images/kg-uml.png" alt="gradio-config">&lt;/li>
+&lt;li>&lt;strong>导入架构&lt;/strong>： &lt;code>import_schema&lt;/code> 方法用于从源导入架构。源可以是 HugeGraph 实例、用户定义的模式或提取结果。可以链接 &lt;code>print_result&lt;/code> 方法来打印结果。
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Import schema from a HugeGraph instance&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_hugegraph&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test_graph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Import schema from user-defined schema&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_user_defined&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;xxx&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_hugegraph&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;xxx&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Import schema from an extraction result&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_extraction&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;xxx&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>提取三元组：使用 &lt;code>extract_triples&lt;/code> 方法从文本中提取三元组。&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Import schema from user-defined schema&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">import_schema&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">from_user_defined&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;xxx&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>Chunk Split&lt;/strong> ： &lt;code>chunk_split&lt;/code> 方法用于将输入文本分割为块。文本应该作为字符串参数传递给方法。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Split the input text into documents&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">chunk_split&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">TEXT&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">split_type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;document&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Split the input text into paragraphs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">chunk_split&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">TEXT&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">split_type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;paragraph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Split the input text into sentences&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">chunk_split&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">TEXT&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">split_type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;sentence&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>信息抽取&lt;/strong>：&lt;code>extract_info&lt;/code> 方法用于从文本中提取信息。文本应该作为字符串参数传递给方法。
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">TEXT&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Meet Sarah, a 30-year-old attorney, and her roommate, James, whom she&amp;#39;s shared a home with since 2010.&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_triples&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">TEXT&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>消除词义歧义：使用 &lt;code>disambiguate_word_sense&lt;/code> 方法消除词义歧义。&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">disambiguate_word_sense&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>提交到 HugeGraph：使用 &lt;code>commit_to_hugegraph&lt;/code> 方法提交构建的知识图谱到 HugeGraph 实例。&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># extract property graph from the input text&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">extract_type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;property_graph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># extract triples from the input text&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">extract_type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;property_graph&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>Commit to HugeGraph&lt;/strong> ： &lt;code>commit_to_hugegraph&lt;/code> 方法用于将构建的知识图谱提交到 HugeGraph 实例。
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">commit_to_hugegraph&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
-&lt;li>运行：使用 &lt;code>run&lt;/code> 方法执行上述操作。&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>Run&lt;/strong> ： &lt;code>run&lt;/code> 方法用于执行链式操作。
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">run&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="42-基于-hugegraph-的检索增强生成rag">4.2 基于 HugeGraph 的检索增强生成（RAG）&lt;/h4>
-&lt;h5 id="411-通过-gradio-交互问答">4.1.1 通过 gradio 交互问答&lt;/h5>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;code>KgBuilder&lt;/code> 类的方法可以链接在一起以执行一系列操作。&lt;/li>
+&lt;/ol>
+&lt;h4 id="42-基于-hugegraph-的检索增强生成rag">4.2 基于 HugeGraph 的检索增强生成（RAG）&lt;/h4>
+&lt;p>&lt;code>RAGPipeline&lt;/code> 类用于将 HugeGraph 与大型语言模型集成，以提供检索增强生成功能。下面是使用过程：&lt;/p>
 &lt;ol>
-&lt;li>首先点击 &lt;code>Initialize HugeGraph test data&lt;/code> 按钮，初始化 HugeGraph 数据。
-&lt;img src="/docs/images/gradio-rag-1.png" alt="gradio 配置">&lt;/li>
-&lt;li>然后点击 &lt;code>Retrieval augmented generation&lt;/code> 按钮，生成问题的答案。
-&lt;img src="/docs/images/gradio-rag-2.png" alt="gradio 配置">&lt;/li>
-&lt;/ol>
-&lt;h5 id="412-通过代码构建-graph-rag">4.1.2 通过代码构建 Graph RAG&lt;/h5>
-&lt;ul>
-&lt;li>完整代码&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">GraphRAG&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">result&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_keyword&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Tell me about Al Pacino.&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">query_graph_for_rag&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">max_deep&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">max_items&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">synthesize_answer&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">run&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">verbose&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
-&lt;li>extract_keyword: 提取关键词, 并进行近义词扩展&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_keyword&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Tell me about Al Pacino.&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>query_graph_for_rag: 从 HugeGraph 中检索对应的关键词，及其多度的关联关系
-&lt;ul>
-&lt;li>max_deep: hugegraph 检索的最大深度&lt;/li>
-&lt;li>max_items: hugegraph 最大返回结果数&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">query_graph_for_rag&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">max_deep&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">max_items&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>synthesize_answer: 针对提问，汇总结果，组织语言回答问题。&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">synthesize_answer&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>run: 执行上述操作。&lt;/li>
-&lt;/ol>
+&lt;li>&lt;strong>提取关键字&lt;/strong>：提取关键字并扩展同义词。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">hugegraph_llm.operators.graph_rag_task&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">RAGPipeline&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">RAGPipeline&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">extract_keywords&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Tell me about Al Pacino.&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>根据关键字匹配 Vid&lt;/strong>:：将节点与图中的关键字匹配。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">keywords_to_vid&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>RAG 的查询图&lt;/strong>：从 HugeGraph 中检索对应的关键词及其多度关联关系。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">query_graphdb&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">max_deep&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">max_items&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>重新排序搜索结果&lt;/strong>：根据问题与结果之间的相似性对搜索结果进行重新排序。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">merge_dedup_rerank&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>合成答案&lt;/strong>：总结结果并组织语言来回答问题。
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">synthesize_answer&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">vector_only_answer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">False&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">graph_only_answer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">print_result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;strong>运行&lt;/strong>：&lt;code>run&lt;/code> 方法用于执行上述操作。
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">graph_rag&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">run&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">verbose&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: HugeGraph-Client Quick Start</title><link>/cn/docs/quickstart/hugegraph-client/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/quickstart/hugegraph-client/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></description></item><item><title>Docs: HugeGraph-Client Quick Start</title><link>/cn/docs/quickstart/hugegraph-client/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/quickstart/hugegraph-client/</guid><description>
 &lt;h3 id="1-hugegraph-client-概述">1 HugeGraph-Client 概述&lt;/h3>
 &lt;p>&lt;a href="https://github.com/apache/hugegraph-toolchain">HugeGraph-Client&lt;/a> 向 HugeGraph-Server 发出 HTTP 请求，获取并解析 Server 的执行结果。
 提供了 Java/Go/&lt;a href="https://github.com/apache/incubator-hugegraph-ai/tree/main/hugegraph-python-client">Python&lt;/a> 版，
@@ -9853,7 +9888,22 @@ LICENSE 是 Apache 2.0, 且对应的项目中包含了 NOTICE, 则还需要更�
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>注：&lt;/p>
 &lt;blockquote>
 &lt;p>可以通过&lt;code>GET http://localhost:8080/graphs/hugegraph/tasks/1&lt;/code>（其中&amp;quot;1&amp;quot;是task_id）来查询异步任务的执行状态，更多&lt;a href="../task">异步任务RESTful API&lt;/a>&lt;/p>
-&lt;/blockquote></description></item><item><title>Docs: HugeGraph-Tools Quick Start</title><link>/cn/docs/quickstart/hugegraph-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/quickstart/hugegraph-tools/</guid><description>
+&lt;/blockquote></description></item><item><title>Docs: HugeGraph 1.5.0 Release Notes</title><link>/cn/docs/changelog/hugegraph-1.5.0-release-notes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/changelog/hugegraph-1.5.0-release-notes/</guid><description>
+&lt;blockquote>
+&lt;p>WIP: This doc is under construction, please wait for the final version (BETA)&lt;/p>
+&lt;/blockquote>
+&lt;p>Please check the release details/contributor in each repository:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph/releases">Server Release Notes&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph-toolchain/releases">Toolchain Release Notes&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph-computer/releases">Computer Release Notes&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/incubator-hugegraph-ai/releases">AI Release Notes&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="运行环境版本说明">运行环境/版本说明&lt;/h3>
+&lt;ol>
+&lt;li>相较于 &lt;strong>1.3.0&lt;/strong>，&lt;strong>1.5.0&lt;/strong> 的 &lt;code>hugegraph&lt;/code> 仅支持 Java 11&lt;/li>
+&lt;/ol>
+&lt;p>PS: 未来 HugeGraph 组件的版本会朝着 &lt;code>Java 11 -&amp;gt; Java 17 -&amp;gt; Java 21&lt;/code> 演进&lt;/p></description></item><item><title>Docs: HugeGraph-Tools Quick Start</title><link>/cn/docs/quickstart/hugegraph-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/quickstart/hugegraph-tools/</guid><description>
 &lt;h3 id="1-hugegraph-tools概述">1 HugeGraph-Tools概述&lt;/h3>
 &lt;p>HugeGraph-Tools 是 HugeGraph 的自动化部署、管理和备份/还原组件。&lt;/p>
 &lt;h3 id="2-获取-hugegraph-tools">2 获取 HugeGraph-Tools&lt;/h3>
@@ -15882,78 +15932,4 @@ LICENSE 是 Apache 2.0, 且对应的项目中包含了 NOTICE, 则还需要更�
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;OK&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: Task API</title><link>/cn/docs/clients/restful-api/task/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/cn/docs/clients/restful-api/task/</guid><description>
-&lt;h3 id="71-task">7.1 Task&lt;/h3>
-&lt;h4 id="711-列出某个图中全部的异步任务">7.1.1 列出某个图中全部的异步任务&lt;/h4>
-&lt;h5 id="params">Params&lt;/h5>
-&lt;ul>
-&lt;li>status: 异步任务的状态&lt;/li>
-&lt;li>limit：返回异步任务数目上限&lt;/li>
-&lt;/ul>
-&lt;h5 id="method--url">Method &amp;amp; Url&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>GET http://localhost:8080/graphs/hugegraph/tasks?status=success
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="response-status">Response Status&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="response-body">Response Body&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;tasks&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;hugegraph.traversal().V()&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_progress&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_create&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1532943976585&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;success&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_update&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1532943976736&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_retries&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;gremlin&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_callable&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.apache.hugegraph.api.job.GremlinAPI$GremlinJob&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_input&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;{\&amp;#34;gremlin\&amp;#34;:\&amp;#34;hugegraph.traversal().V()\&amp;#34;,\&amp;#34;bindings\&amp;#34;:{},\&amp;#34;language\&amp;#34;:\&amp;#34;gremlin-groovy\&amp;#34;,\&amp;#34;aliases\&amp;#34;:{\&amp;#34;hugegraph\&amp;#34;:\&amp;#34;graph\&amp;#34;}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="712-查看某个异步任务的信息">7.1.2 查看某个异步任务的信息&lt;/h4>
-&lt;h5 id="method--url-1">Method &amp;amp; Url&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>GET http://localhost:8080/graphs/hugegraph/tasks/2
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="response-status-1">Response Status&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="response-body-1">Response Body&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;hugegraph.traversal().V()&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_progress&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_create&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1532943976585&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;success&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_update&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1532943976736&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_retries&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;gremlin&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_callable&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.apache.hugegraph.api.job.GremlinAPI$GremlinJob&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;task_input&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;{\&amp;#34;gremlin\&amp;#34;:\&amp;#34;hugegraph.traversal().V()\&amp;#34;,\&amp;#34;bindings\&amp;#34;:{},\&amp;#34;language\&amp;#34;:\&amp;#34;gremlin-groovy\&amp;#34;,\&amp;#34;aliases\&amp;#34;:{\&amp;#34;hugegraph\&amp;#34;:\&amp;#34;graph\&amp;#34;}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="713-删除某个异步任务信息不删除异步任务本身">7.1.3 删除某个异步任务信息，&lt;strong>不删除异步任务本身&lt;/strong>&lt;/h4>
-&lt;h5 id="method--url-2">Method &amp;amp; Url&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>DELETE http://localhost:8080/graphs/hugegraph/tasks/2
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="response-status-2">Response Status&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">204&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="714-取消某个异步任务该异步任务必须具有处理中断的能力">7.1.4 取消某个异步任务，&lt;strong>该异步任务必须具有处理中断的能力&lt;/strong>&lt;/h4>
-&lt;p>假设已经通过&lt;a href="../gremlin">Gremlin API&lt;/a>创建了一个异步任务如下：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-groovy" data-lang="groovy">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&amp;#34;for (int i = 0; i &amp;lt; 10; i++) {&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;hugegraph.addVertex(T.label, &amp;#39;man&amp;#39;);&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;hugegraph.tx().commit();&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;try {&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;sleep(1000);&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;} catch (InterruptedException e) {&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;break;&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;}&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&amp;#34;}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="method--url-3">Method &amp;amp; Url&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-fallback" data-lang="fallback">&lt;span style="display:flex;">&lt;span>PUT http://localhost:8080/graphs/hugegraph/tasks/2?action=cancel
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
-&lt;p>请保证在 10 秒内发送该请求，如果超过 10 秒发送，任务可能已经执行完成，无法取消。&lt;/p>
-&lt;/blockquote>
-&lt;h5 id="response-status-3">Response Status&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">202&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="response-body-2">Response Body&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;cancelled&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>此时查询 label 为 man 的顶点数目，一定是小于 10 的。&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
