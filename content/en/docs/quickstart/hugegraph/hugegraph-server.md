@@ -239,6 +239,8 @@ Then enable PD discovery in `rest-server.properties` (required for every HugeGra
 ```properties
 usePD=true
 
+# notice: must have this conf in 1.7.0
+pd.peers=127.0.0.1:8686,127.0.0.1:8687,127.0.0.1:8688
 # If auth is needed
 # auth.authenticator=org.apache.hugegraph.auth.StandardAuthenticator
 ```

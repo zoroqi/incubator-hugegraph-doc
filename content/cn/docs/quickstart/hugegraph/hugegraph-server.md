@@ -222,6 +222,8 @@ pd.peers=127.0.0.1:8686
 
 ```properties
 usePD=true
+# 注意，1.7.0 必须在 rest-server.properties 配置 pd.peers
+pd.peers=127.0.0.1:8686,127.0.0.1:8687,127.0.0.1:8688
 
 # 若需要 auth 
 # auth.authenticator=org.apache.hugegraph.auth.StandardAuthenticator
